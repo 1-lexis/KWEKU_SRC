@@ -1,111 +1,293 @@
-$(document).ready(function () {
+/* ============================================================
+   SRC SPORTS ACADEMY — MAIN JAVASCRIPT
+   Handles: Navbar, Search, Hamburger, Captcha, Forms,
+            Visitor Counter, Accordion, Tabs, Scroll-to-Top
+   ============================================================ */
 
-  /* ── 1. NAVBAR: scroll class for background change ──────── */
-  $(window).on('scroll', function () {
-    if ($(this).scrollTop() > 60) {
-      $('.navbar').addClass('scrolled');
-    } else {
-      $('.navbar').removeClass('scrolled');
-    }
-  });
+/* ── jQuery CDN check wrapper ── */
+(function () {
+  "use strict";
 
-  /* ── 2. HAMBURGER MENU ──────────────────────────────────── */
-  $('#hamburger').on('click', function () {
-    $(this).toggleClass('open');
-    $('#mobile-nav').toggleClass('open');
-    const expanded = $(this).hasClass('open');
-    $(this).attr('aria-expanded', expanded);
-  });
-
-  // Close mobile nav when a link is clicked
-  $('#mobile-nav a').on('click', function () {
-    $('#hamburger').removeClass('open').attr('aria-expanded', false);
-    $('#mobile-nav').removeClass('open');
-  });
-
-  /* ── 3. SEARCH FUNCTIONALITY (jQuery) ───────────────────── */
-  const pages = [
-    { name: 'Home',            url: 'index.html',          keywords: ['home', 'welcome', 'hero', 'academy'] },
-    { name: 'About',           url: 'about.html',          keywords: ['about', 'mission', 'vision', 'values', 'history'] },
-    { name: 'Sports Programs', url: 'new-activities.html', keywords: ['wrestling', 'taekwondo', 'judo', 'volleyball', 'football', 'rugby', 'gymnastics', 'sports', 'new', 'activities'] },
-    { name: 'Register',        url: 'register.html',       keywords: ['register', 'sign up', 'join', 'membership', 'subscribe'] },
-    { name: 'Book Online',     url: 'book.html',           keywords: ['book', 'booking', 'session', 'schedule', 'reserve'] },
-    { name: 'Events',          url: 'events.html',         keywords: ['events', 'fixtures', 'competition', 'schedule', 'match'] },
-    { name: 'Blog',            url: 'blog.html',           keywords: ['blog', 'news', 'updates', 'posts', 'community'] },
-  ];
-
-  function doSearch(query) {
-    const q = query.toLowerCase().trim();
-    if (!q) {
-      $('#search-results').removeClass('visible').empty();
-      return;
-    }
-    const results = pages.filter(p =>
-      p.name.toLowerCase().includes(q) ||
-      p.keywords.some(k => k.includes(q))
-    );
-    const $box = $('#search-results');
-    $box.empty();
-    if (results.length === 0) {
-      $box.append('<p>No results found for "<strong>' + $('<span>').text(q).html() + '</strong>"</p>');
-    } else {
-      results.forEach(r => {
-        $box.append('<p><a href="' + r.url + '"><strong>' + r.name + '</strong></a></p>');
-      });
-    }
-    $box.addClass('visible');
+  /* ── VISITOR COUNTER ── */
+  function initVisitorCounter() {
+    const key = "srcsa_visits";
+    let count = parseInt(localStorage.getItem(key) || "0", 10);
+    count++;
+    localStorage.setItem(key, count);
+    const el = document.getElementById("visit-count");
+    if (el) el.textContent = count.toLocaleString();
   }
 
-  $('#search-input').on('input', function () {
-    doSearch($(this).val());
-  });
+  /* ── NAVBAR SCROLL ── */
+  function initNavbar() {
+    const navbar = document.querySelector(".navbar");
+    if (!navbar) return;
+    window.addEventListener("scroll", function () {
+      if (window.scrollY > 40) navbar.classList.add("scrolled");
+      else navbar.classList.remove("scrolled");
+    });
 
-  $('#search-btn').on('click', function () {
-    doSearch($('#search-input').val());
-  });
+    /* active link */
+    const links = document.querySelectorAll(".nav-links a, .mobile-nav a");
+    const current = location.pathname.split("/").pop() || "index.html";
+    links.forEach(function (a) {
+      if (a.getAttribute("href") === current) a.classList.add("active");
+    });
+  }
 
-  $(document).on('click', function (e) {
-    if (!$(e.target).closest('.nav-search, #search-results').length) {
-      $('#search-results').removeClass('visible');
+  /* ── HAMBURGER ── */
+  function initHamburger() {
+    const btn = document.getElementById("hamburger-btn");
+    const mobileNav = document.getElementById("mobile-nav");
+    if (!btn || !mobileNav) return;
+    btn.addEventListener("click", function () {
+      btn.classList.toggle("open");
+      mobileNav.classList.toggle("open");
+    });
+  }
+
+  /* ── SEARCH ── */
+  const PAGES = [
+    { title: "Home",          url: "index.html",        keywords: ["home", "welcome", "academy", "sports"] },
+    { title: "About Us",      url: "about.html",        keywords: ["about", "mission", "vision", "values", "history"] },
+    { title: "New Activities",url: "new-activities.html",keywords: ["wrestling", "taekwondo", "judo", "volleyball", "new", "martial arts"] },
+    { title: "Events",        url: "events.html",       keywords: ["events", "schedule", "fixtures", "competition", "upcoming"] },
+    { title: "Blog",          url: "blog.html",         keywords: ["blog", "news", "updates", "posts", "articles"] },
+    { title: "Register",      url: "register.html",     keywords: ["register", "sign up", "join", "subscription", "membership"] },
+    { title: "Book Online",   url: "book.html",         keywords: ["book", "booking", "session", "training", "reserve"] },
+    { title: "Contact",       url: "contact.html",      keywords: ["contact", "email", "phone", "location", "address"] },
+  ];
+
+  function initSearch() {
+    const input    = document.getElementById("search-input");
+    const dropdown = document.getElementById("search-results-dropdown");
+    if (!input || !dropdown) return;
+
+    input.addEventListener("input", function () {
+      const q = input.value.trim().toLowerCase();
+      dropdown.classList.add("hidden");
+      dropdown.innerHTML = "";
+      if (q.length < 1) return;
+
+      const results = PAGES.filter(function (p) {
+        return p.title.toLowerCase().includes(q) ||
+               p.keywords.some(function (k) { return k.includes(q); });
+      });
+
+      if (results.length === 0) {
+        dropdown.innerHTML = '<span style="padding:0.5rem 0.75rem;font-size:0.85rem;color:var(--clr-muted);display:block;">No results found</span>';
+        dropdown.classList.remove("hidden");
+        return;
+      }
+
+      results.forEach(function (r) {
+        const a = document.createElement("a");
+        a.href = r.url;
+        a.innerHTML = "🔗 " + r.title;
+        dropdown.appendChild(a);
+      });
+      dropdown.classList.remove("hidden");
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!input.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.classList.add("hidden");
+      }
+    });
+  }
+
+  /* ── CAPTCHA ── */
+  function generateCaptcha() {
+    const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+    let code = "";
+    for (let i = 0; i < 5; i++) {
+      code += chars[Math.floor(Math.random() * chars.length)];
     }
-  });
+    return code;
+  }
 
-  /* ── 4. VISITOR COUNTER ─────────────────────────────────── */
-  let visits = parseInt(localStorage.getItem('srcVisits') || '0') + 1;
-  localStorage.setItem('srcVisits', visits);
-  $('#visit-count').text(visits.toLocaleString());
+  function initCaptcha() {
+    const challenges = document.querySelectorAll(".captcha-challenge");
+    challenges.forEach(function (el) {
+      el.dataset.code = generateCaptcha();
+      el.textContent = el.dataset.code;
+    });
+    const refreshBtns = document.querySelectorAll(".captcha-refresh");
+    refreshBtns.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        const challenge = btn.closest(".captcha-box").querySelector(".captcha-challenge");
+        if (challenge) {
+          challenge.dataset.code = generateCaptcha();
+          challenge.textContent = challenge.dataset.code;
+          const inp = btn.closest(".captcha-box").querySelector("input");
+          if (inp) inp.value = "";
+        }
+      });
+    });
+  }
 
-  /* ── 5. CAPTCHA CHECKBOX ────────────────────────────────── */
-  $('#captcha-check').on('change', function () {
-    if ($(this).is(':checked')) {
-      $('#captcha-label').text('✓ Verified – You are human');
-      $('#subscribe-btn').prop('disabled', false);
+  function validateCaptcha(formEl) {
+    const box = formEl.querySelector(".captcha-box");
+    if (!box) return true;
+    const challenge = box.querySelector(".captcha-challenge");
+    const input     = box.querySelector("input");
+    if (!challenge || !input) return true;
+    return input.value.toUpperCase().trim() === challenge.dataset.code;
+  }
+
+  /* ── FORM VALIDATION ── */
+  function validateField(input) {
+    const val = input.value.trim();
+    let valid = true;
+
+    if (input.required && val === "") valid = false;
+    if (input.type === "email" && val && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) valid = false;
+    if (input.type === "tel" && val && !/^[\d\s\+\-\(\)]{7,15}$/.test(val)) valid = false;
+    if (input.minLength && val.length < input.minLength && val !== "") valid = false;
+
+    if (valid) {
+      input.classList.remove("error");
     } else {
-      $('#captcha-label').text('I am not a robot');
-      $('#subscribe-btn').prop('disabled', true);
+      input.classList.add("error");
     }
-  });
+    return valid;
+  }
 
-  $('#subscribe-btn').prop('disabled', true);
+  function initForms() {
+    const forms = document.querySelectorAll("form[data-validate]");
+    forms.forEach(function (form) {
+      const inputs = form.querySelectorAll("input, select, textarea");
+      inputs.forEach(function (inp) {
+        inp.addEventListener("blur", function () { validateField(inp); });
+      });
 
-  /* ── 6. SUBSCRIBE FORM (simulated) ──────────────────────── */
-  $('#subscribe-form').on('submit', function (e) {
-    e.preventDefault();
-    const email = $('#subscribe-email').val().trim();
-    if (email) {
-      $('#subscribe-form').html(
-        '<p style="color:var(--gold);font-weight:700;letter-spacing:1px;">🏆 You\'re subscribed! Welcome to SRC Sports Academy.</p>'
-      );
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        let allValid = true;
+        inputs.forEach(function (inp) {
+          if (!validateField(inp)) allValid = false;
+        });
+
+        if (!validateCaptcha(form)) {
+          allValid = false;
+          const captchaInp = form.querySelector(".captcha-box input");
+          if (captchaInp) captchaInp.classList.add("error");
+          showAlert(form, "error", "Incorrect CAPTCHA. Please try again.");
+          initCaptcha();
+          return;
+        }
+
+        if (!allValid) {
+          showAlert(form, "error", "Please fill in all required fields correctly.");
+          return;
+        }
+
+        showAlert(form, "success", getSuccessMessage(form));
+        form.reset();
+        initCaptcha();
+      });
+    });
+  }
+
+  function getSuccessMessage(form) {
+    const type = form.dataset.formType || "generic";
+    const msgs = {
+      register: "Registration successful! Check your email for confirmation.",
+      book:     "Booking request sent! We will confirm via email within 24 hours.",
+      contact:  "Message sent! We will get back to you shortly.",
+      generic:  "Submitted successfully!"
+    };
+    return msgs[type] || msgs.generic;
+  }
+
+  function showAlert(form, type, msg) {
+    const existing = form.querySelector(".alert");
+    if (existing) existing.remove();
+    const div = document.createElement("div");
+    div.className = "alert alert-" + type;
+    div.innerHTML = (type === "success" ? "✅ " : "❌ ") + msg;
+    form.insertBefore(div, form.firstChild);
+    setTimeout(function () { if (div.parentNode) div.remove(); }, 6000);
+  }
+
+  /* ── ACCORDION ── */
+  function initAccordion() {
+    const headers = document.querySelectorAll(".accordion-header");
+    headers.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        const item = btn.closest(".accordion-item");
+        const isOpen = item.classList.contains("open");
+        document.querySelectorAll(".accordion-item.open").forEach(function (i) {
+          i.classList.remove("open");
+        });
+        if (!isOpen) item.classList.add("open");
+      });
+    });
+  }
+
+  /* ── TABS ── */
+  function initTabs() {
+    const tabBtns = document.querySelectorAll(".tab-btn");
+    tabBtns.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        const group = btn.dataset.tabGroup || "default";
+        const target = btn.dataset.tab;
+
+        document.querySelectorAll('[data-tab-group="' + group + '"].tab-btn').forEach(function (b) {
+          b.classList.remove("active");
+        });
+        document.querySelectorAll('[data-tab-content="' + group + '"].tab-pane').forEach(function (p) {
+          p.classList.remove("active");
+        });
+
+        btn.classList.add("active");
+        const pane = document.getElementById(target);
+        if (pane) pane.classList.add("active");
+      });
+    });
+  }
+
+  /* ── SCROLL TO TOP ── */
+  function initScrollTop() {
+    const btn = document.getElementById("scroll-top");
+    if (!btn) return;
+    window.addEventListener("scroll", function () {
+      if (window.scrollY > 400) btn.classList.add("visible");
+      else btn.classList.remove("visible");
+    });
+    btn.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
+  /* ── JQUERY ON-PAGE SEARCH ── */
+  function initJQuerySearch() {
+    if (typeof $ === "undefined") return;
+
+    /* Blog / card filter */
+    const filterInput = $("#content-filter");
+    if (filterInput.length) {
+      filterInput.on("input", function () {
+        const q = $(this).val().toLowerCase();
+        $(".filterable-card").each(function () {
+          const text = $(this).text().toLowerCase();
+          $(this).closest(".card, .event-item, .blog-card").toggle(text.includes(q));
+        });
+      });
     }
-  });
+  }
 
-  /* ── 7. SMOOTH SCROLL for anchor links ──────────────────── */
-  $('a[href^="#"]').on('click', function (e) {
-    const target = $($(this).attr('href'));
-    if (target.length) {
-      e.preventDefault();
-      $('html, body').animate({ scrollTop: target.offset().top - 80 }, 600);
-    }
+  /* ── INIT ALL ── */
+  document.addEventListener("DOMContentLoaded", function () {
+    initVisitorCounter();
+    initNavbar();
+    initHamburger();
+    initSearch();
+    initCaptcha();
+    initForms();
+    initAccordion();
+    initTabs();
+    initScrollTop();
+    initJQuerySearch();
   });
-
-});
+})();

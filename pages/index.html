@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="SRC Sports Academy — Pentecost University's premier student sports platform. Football, Rugby, Wrestling, Taekwondo, Judo, Volleyball and more."/>
+  <meta name="keywords" content="sports academy, Pentecost University, SRC, football, rugby, wrestling, taekwondo, judo, volleyball"/>
+  <title>SRC Sports Academy — Home</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏆</text></svg>"/>
+
+  <!-- External CSS only -->
+  <link rel="stylesheet" href="css/style.css"/>
+
+  <!-- Extra home-page styles -->
+  <style>
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero-video-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-video-bg video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.25;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(10,10,15,0.85) 0%, rgba(10,10,15,0.5) 60%, transparent 100%);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 7rem 0 5rem;
+    }
+    .hero-content .badge { margin-bottom: 1.25rem; animation: fadeUp 0.6s ease both; }
+    .hero-content h1 {
+      margin-bottom: 1.25rem;
+      max-width: 780px;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    .hero-content h1 .line2 { color: var(--clr-gold); }
+    .hero-content p {
+      font-size: 1.15rem;
+      max-width: 520px;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.6s 0.3s ease both; }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--clr-muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+
+    /* Fallback gradient for browsers without video */
+    .hero-video-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(240,180,41,0.12) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 20%, rgba(230,57,70,0.08) 0%, transparent 50%);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* Sports showcase */
+    .sports-showcase {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+    }
+    @media (max-width: 1024px) { .sports-showcase { grid-template-columns: repeat(4, 1fr); } }
+    @media (max-width: 768px)  { .sports-showcase { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 480px)  { .sports-showcase { grid-template-columns: repeat(2, 1fr); } }
+
+    /* Highlights ticker */
+    .ticker-wrap {
+      background: var(--clr-gold);
+      padding: 0.6rem 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .ticker-track {
+      display: flex;
+      gap: 0;
+      white-space: nowrap;
+      animation: ticker 28s linear infinite;
+    }
+    .ticker-item {
+      font-family: var(--ff-display);
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      color: var(--clr-bg);
+      padding: 0 2rem;
+    }
+    .ticker-item::after { content: '  •  '; }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* Media coverage section */
+    .media-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media (max-width: 768px) { .media-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <!-- NAV (injected by layout.js) -->
+  <div id="nav-placeholder"></div>
+
+  <!-- ══════════════ HERO ══════════════ -->
+  <section class="hero" aria-label="Hero section">
+    <div class="hero-video-bg">
+      <!-- Background video: sourced from public domain / Wikimedia Commons -->
+      <video autoplay muted loop playsinline poster=""
+             aria-hidden="true"
+             title="Sports academy background video">
+        <source src="https://upload.wikimedia.org/wikipedia/commons/transcoded/0/09/Street_football_in_Vietnam.ogv/Street_football_in_Vietnam.ogv.480p.vp9.webm" type="video/webm"/>
+        <!-- Fallback: no video shown, gradient overlay still displays -->
+      </video>
+    </div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="container hero-content">
+      <span class="badge">Pentecost University SRC</span>
+      <h1>TRAIN HARD.<br/><span class="line2">WIN BIGGER.</span></h1>
+      <p>The SRC Sports Academy brings world-class athletic training, new sports programs, and community engagement to Pentecost University and beyond.</p>
+      <div class="hero-btns">
+        <a href="book.html"     class="btn btn-primary">📅 Book a Session</a>
+        <a href="new-activities.html" class="btn btn-outline">Explore New Sports</a>
+      </div>
+    </div>
+    <div class="hero-scroll" aria-hidden="true">Scroll <span>↓</span></div>
+  </section>
+
+  <!-- ══════════════ TICKER ══════════════ -->
+  <div class="ticker-wrap" aria-label="News ticker" role="marquee">
+    <div class="ticker-track" aria-hidden="true">
+      <!-- doubled for seamless loop -->
+      <span class="ticker-item">Wrestling Program Launching Sept 2025</span>
+      <span class="ticker-item">Taekwondo Trials: Register Now</span>
+      <span class="ticker-item">Football Team Qualifies for National League</span>
+      <span class="ticker-item">Judo Workshop — Every Saturday 9AM</span>
+      <span class="ticker-item">Volleyball Mixed League Open</span>
+      <span class="ticker-item">SRC Sports Gala — 30 Nov 2025</span>
+      <span class="ticker-item">Wrestling Program Launching Sept 2025</span>
+      <span class="ticker-item">Taekwondo Trials: Register Now</span>
+      <span class="ticker-item">Football Team Qualifies for National League</span>
+      <span class="ticker-item">Judo Workshop — Every Saturday 9AM</span>
+      <span class="ticker-item">Volleyball Mixed League Open</span>
+      <span class="ticker-item">SRC Sports Gala — 30 Nov 2025</span>
+    </div>
+  </div>
+
+  <!-- ══════════════ STATS ══════════════ -->
+  <section class="section-pad" aria-labelledby="stats-heading">
+    <div class="container">
+      <div class="stat-grid" role="list">
+        <div class="stat-item" role="listitem">
+          <span class="num" aria-label="10 sports offered">10</span>
+          <span class="label">Sports Offered</span>
+        </div>
+        <div class="stat-item" role="listitem">
+          <span class="num" aria-label="500 plus active members">500+</span>
+          <span class="label">Active Members</span>
+        </div>
+        <div class="stat-item" role="listitem">
+          <span class="num" aria-label="12 qualified coaches">12</span>
+          <span class="label">Qualified Coaches</span>
+        </div>
+        <div class="stat-item" role="listitem">
+          <span class="num" aria-label="38 trophies won">38</span>
+          <span class="label">Trophies Won</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ SPORTS SHOWCASE ══════════════ -->
+  <section class="section-pad" style="padding-top:0" aria-labelledby="sports-heading">
+    <div class="container">
+      <div class="section-heading">
+        <span class="badge">What We Offer</span>
+        <h2 id="sports-heading">All Sports Programs</h2>
+        <p>From established disciplines to our exciting new additions — there's a sport for everyone.</p>
+      </div>
+
+      <div class="sports-showcase" role="list">
+        <!-- Existing sports -->
+        <div class="sport-card" role="listitem">
+          <div class="sport-icon" aria-hidden="true">⚽</div>
+          <h4>Football</h4>
+          <p>Competitive & recreational</p>
+        </div>
+        <div class="sport-card" role="listitem">
+          <div class="sport-icon" aria-hidden="true">🏉</div>
+          <h4>Rugby</h4>
+          <p>University league squad</p>
+        </div>
+        <div class="sport-card" role="listitem">
+          <div class="sport-icon" aria-hidden="true">🩰</div>
+          <h4>Ballet</h4>
+          <p>Discipline & grace</p>
+        </div>
+        <div class="sport-card" role="listitem">
+          <div class="sport-icon" aria-hidden="true">🏓</div>
+          <h4>Table Tennis</h4>
+          <p>Fast-paced precision</p>
+        </div>
+        <div class="sport-card" role="listitem">
+          <div class="sport-icon" aria-hidden="true">🤾</div>
+          <h4>Handball</h4>
+          <p>Team strategy</p>
+        </div>
+        <div class="sport-card" role="listitem">
+          <div class="sport-icon" aria-hidden="true">🤸</div>
+          <h4>Gymnastics</h4>
+          <p>Strength & flexibility</p>
+        </div>
+        <!-- New sports -->
+        <div class="sport-card new-sport" role="listitem">
+          <div class="sport-icon" aria-hidden="true">🤼</div>
+          <h4>Wrestling</h4>
+          <p>Strength & technique</p>
+        </div>
+        <div class="sport-card new-sport" role="listitem">
+          <div class="sport-icon" aria-hidden="true">🥋</div>
+          <h4>Taekwondo</h4>
+          <p>Speed & precision</p>
+        </div>
+        <div class="sport-card new-sport" role="listitem">
+          <div class="sport-icon" aria-hidden="true">🥋</div>
+          <h4>Judo</h4>
+          <p>Balance & control</p>
+        </div>
+        <div class="sport-card new-sport" role="listitem">
+          <div class="sport-icon" aria-hidden="true">🏐</div>
+          <h4>Volleyball</h4>
+          <p>Indoor & beach</p>
+        </div>
+      </div>
+
+      <div class="text-center" style="margin-top:2.5rem;">
+        <a href="new-activities.html" class="btn btn-outline">Explore New Programs →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ MEDIA COVERAGE ══════════════ -->
+  <section class="section-pad" style="background:var(--clr-surface);border-top:1px solid var(--clr-border);border-bottom:1px solid var(--clr-border);" aria-labelledby="media-heading">
+    <div class="container">
+      <div class="section-heading">
+        <span class="badge">Media & Coverage</span>
+        <h2 id="media-heading">Sports in the Spotlight</h2>
+        <p>Stay connected with global sports content and academy highlights.</p>
+      </div>
+      <div class="media-grid">
+        <div>
+          <p style="font-size:0.82rem;color:var(--clr-muted);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.1em;">Olympics Highlights (via YouTube)</p>
+          <div class="media-embed-wrap">
+            <!-- Embedded YouTube: International Olympic Committee public channel -->
+            <iframe
+              src="https://www.youtube.com/embed/videoseries?list=PLZArkG4gYxkkTMp2V5Ns3yx27eeRIBe4e"
+              title="Olympic sports highlights playlist"
+              allowfullscreen
+              loading="lazy"
+              aria-label="Olympic sports highlights video playlist"></iframe>
+          </div>
+        </div>
+        <div>
+          <p style="font-size:0.82rem;color:var(--clr-muted);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.1em;">CAF African Football (via YouTube)</p>
+          <div class="media-embed-wrap">
+            <iframe
+              src="https://www.youtube.com/embed/videoseries?list=PLNJ3N8wO40SOfq7yjUC3HJnwgSPTxp9RG"
+              title="CAF African football highlights"
+              allowfullscreen
+              loading="lazy"
+              aria-label="CAF African football highlights playlist"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ BOOK CTA ══════════════ -->
+  <section class="section-pad" aria-labelledby="cta-heading">
+    <div class="container text-center">
+      <span class="badge">Get Started Today</span>
+      <h2 id="cta-heading" style="margin:1rem 0;">Ready to Join the Academy?</h2>
+      <p style="margin-bottom:2rem;max-width:480px;margin-left:auto;margin-right:auto;">Book your first training session online. Our coaches will guide you from day one.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="book.html"     class="btn btn-primary">📅 Book a Session</a>
+        <a href="register.html" class="btn btn-outline">Create an Account</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ LATEST BLOG ══════════════ -->
+  <section class="section-pad" style="background:var(--clr-surface);border-top:1px solid var(--clr-border);" aria-labelledby="blog-preview-heading">
+    <div class="container">
+      <div class="section-heading">
+        <span class="badge">Latest News</span>
+        <h2 id="blog-preview-heading">From the Blog</h2>
+      </div>
+      <div class="grid-3">
+        <article class="card blog-card">
+          <div class="card-body">
+            <span class="badge" style="background:var(--clr-accent);margin-bottom:0.75rem;">Football</span>
+            <h3>PU Eagles Win Regional Cup</h3>
+            <p>Our football team clinched the regional championship with a stunning comeback in the final minutes of extra time.</p>
+            <div class="card-meta">
+              <span>📅 Oct 12, 2025</span>
+              <span>👤 Coach Mensah</span>
+            </div>
+            <a href="blog.html" class="btn btn-outline" style="margin-top:1rem;font-size:0.85rem;padding:0.5rem 1.2rem;">Read More →</a>
+          </div>
+        </article>
+        <article class="card blog-card">
+          <div class="card-body">
+            <span class="badge" style="background:#7c3aed;margin-bottom:0.75rem;">Taekwondo</span>
+            <h3>Taekwondo Program Officially Launches</h3>
+            <p>Over 40 students signed up in the first week of the new Taekwondo program. Trials begin next month.</p>
+            <div class="card-meta">
+              <span>📅 Oct 5, 2025</span>
+              <span>👤 SRC Secretary</span>
+            </div>
+            <a href="blog.html" class="btn btn-outline" style="margin-top:1rem;font-size:0.85rem;padding:0.5rem 1.2rem;">Read More →</a>
+          </div>
+        </article>
+        <article class="card blog-card">
+          <div class="card-body">
+            <span class="badge" style="background:#0284c7;margin-bottom:0.75rem;">Community</span>
+            <h3>SRC Sports Gala 2025 Announced</h3>
+            <p>Mark your calendars! The annual SRC Sports Gala will feature 10 sports, prize giving, and community events on 30 Nov 2025.</p>
+            <div class="card-meta">
+              <span>📅 Sep 28, 2025</span>
+              <span>👤 SRC President</span>
+            </div>
+            <a href="blog.html" class="btn btn-outline" style="margin-top:1rem;font-size:0.85rem;padding:0.5rem 1.2rem;">Read More →</a>
+          </div>
+        </article>
+      </div>
+      <div class="text-center" style="margin-top:2.5rem;">
+        <a href="blog.html" class="btn btn-outline">View All Posts →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div id="footer-placeholder"></div>
+
+  <!-- jQuery (CDN) -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+          integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+          crossorigin="anonymous"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

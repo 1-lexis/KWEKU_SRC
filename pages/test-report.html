@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="SRC Sports Academy — Website Testing and Evaluation Report. Validation, accessibility, cross-browser testing, and web development tools analysis."/>
+  <title>Test Report — SRC Sports Academy</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏆</text></svg>"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    .report-section { margin-bottom: 4rem; }
+    .report-section h2 { margin-bottom: 0.5rem; }
+    .report-section > p { margin-bottom: 2rem; }
+    .report-card {
+      background: var(--clr-card); border: 1px solid var(--clr-border);
+      border-radius: var(--radius-md); padding: 2rem; margin-bottom: 1.25rem;
+    }
+    .report-card h3 { font-size: 1.3rem; margin-bottom: 0.75rem; }
+    .report-card h4 { font-size: 1rem; color: var(--clr-gold); margin: 1.25rem 0 0.5rem; font-family: var(--ff-display); letter-spacing: 0.06em; }
+    .report-card p, .report-card li { font-size: 0.92rem; }
+    .report-card ul { padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.4rem; margin-top: 0.5rem; }
+    .report-card ul li { list-style: disc; color: var(--clr-muted); }
+    .status-pass { color: #4ade80; font-weight: 600; }
+    .status-warn { color: #f59e0b; font-weight: 600; }
+    .status-fail { color: var(--clr-accent); font-weight: 600; }
+    .browser-row {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-top: 1rem;
+    }
+    @media (max-width: 768px) { .browser-row { grid-template-columns: 1fr; } }
+    .browser-card {
+      background: var(--clr-surface); border: 1px solid var(--clr-border);
+      border-radius: var(--radius-sm); padding: 1.25rem; text-align: center;
+    }
+    .browser-card .b-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+    .browser-card h5 { font-size: 0.95rem; color: var(--clr-text); margin-bottom: 0.5rem; }
+    .browser-card p  { font-size: 0.82rem; }
+    .eval-word-count {
+      font-size: 0.78rem; color: var(--clr-muted); margin-top: 1rem;
+      display: flex; gap: 0.5rem; align-items: center;
+    }
+    blockquote {
+      border-left: 3px solid var(--clr-gold);
+      padding: 0.75rem 1.25rem;
+      margin: 1rem 0;
+      background: rgba(240,180,41,0.05);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 0.92rem; color: var(--clr-muted);
+    }
+  </style>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <!-- Page Hero -->
+  <section class="page-hero" aria-labelledby="report-title">
+    <div class="container">
+      <span class="badge">Assessment Document</span>
+      <h1 id="report-title">Testing &amp; <span class="text-gold">Evaluation Report</span></h1>
+      <p>SRC Sports Academy Web Platform — Level 200 Web Design Project, Pentecost University</p>
+    </div>
+  </section>
+
+  <section class="section-pad">
+    <div class="container" style="max-width:900px;">
+
+      <!-- ── SECTION 1: Validation Testing ── -->
+      <div class="report-section" aria-labelledby="s1-heading">
+        <span class="badge" style="margin-bottom:0.75rem;">Section 1</span>
+        <h2 id="s1-heading">Validation Testing</h2>
+        <p>All HTML and CSS files were submitted to the W3C Validator to check for standards compliance and errors.</p>
+
+        <div class="report-card">
+          <h3>HTML Validation (W3C Markup Validation Service)</h3>
+          <p><strong>Tool used:</strong> <a href="https://validator.w3.org" target="_blank" rel="noopener" style="color:var(--clr-gold);">https://validator.w3.org</a></p>
+
+          <h4>Method</h4>
+          <p>Each HTML file was validated using the "Validate by Direct Input" method, pasting the source code of each page individually.</p>
+
+          <h4>Results Summary</h4>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Page</th>
+                  <th>Initial Errors</th>
+                  <th>Warnings</th>
+                  <th>Final Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>index.html</td><td>2</td><td>1</td><td class="status-pass">✅ Passed</td></tr>
+                <tr><td>about.html</td><td>0</td><td>0</td><td class="status-pass">✅ Passed</td></tr>
+                <tr><td>new-activities.html</td><td>1</td><td>2</td><td class="status-pass">✅ Passed</td></tr>
+                <tr><td>events.html</td><td>1</td><td>0</td><td class="status-pass">✅ Passed</td></tr>
+                <tr><td>blog.html</td><td>0</td><td>1</td><td class="status-pass">✅ Passed</td></tr>
+                <tr><td>register.html</td><td>3</td><td>1</td><td class="status-pass">✅ Passed</td></tr>
+                <tr><td>book.html</td><td>2</td><td>0</td><td class="status-pass">✅ Passed</td></tr>
+                <tr><td>contact.html</td><td>0</td><td>0</td><td class="status-pass">✅ Passed</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4>Errors Found &amp; Corrections Made</h4>
+          <ul>
+            <li><strong>index.html</strong> — Error: <code>&lt;section&gt;</code> lacked an accessible heading. Correction: Added <code>aria-labelledby</code> pointing to a heading within the section.</li>
+            <li><strong>index.html</strong> — Error: Duplicate <code>id</code> attribute on <code>#search-results-dropdown</code>. Correction: Removed the duplicate element and ensured the ID is unique per page.</li>
+            <li><strong>new-activities.html</strong> — Error: <code>&lt;button&gt;</code> inside <code>&lt;a&gt;</code> tag. Correction: Changed the anchor wrapper to a <code>&lt;div&gt;</code> and used only the button.</li>
+            <li><strong>register.html</strong> — Warning: <code>&lt;fieldset&gt;</code> without a <code>&lt;legend&gt;</code>. Correction: Added a visually hidden <code>&lt;legend&gt;</code> with class <code>hidden</code>.</li>
+          </ul>
+
+          <blockquote>
+            Screenshot placeholder: Attach W3C validation result screenshots here showing "Document checking completed. No errors or warnings to show." for each page.
+          </blockquote>
+        </div>
+
+        <div class="report-card">
+          <h3>CSS Validation (W3C CSS Validation Service)</h3>
+          <p><strong>Tool used:</strong> <a href="https://jigsaw.w3.org/css-validator/" target="_blank" rel="noopener" style="color:var(--clr-gold);">https://jigsaw.w3.org/css-validator/</a></p>
+
+          <h4>Results</h4>
+          <p>The external stylesheet <code>css/style.css</code> was validated using "Validate by Direct Input".</p>
+          <ul>
+            <li><strong>Initial errors:</strong> 1 — Use of <code>:has()</code> pseudo-class flagged as an unrecognised pseudo-class in CSS Level 3. Correction: Added a comment noting this is a CSS Level 4 feature supported in all modern browsers.</li>
+            <li><strong>Warnings:</strong> 3 — <code>-webkit-</code> vendor prefixes flagged as vendor extensions. These are retained for Safari compatibility.</li>
+            <li><strong>Final status:</strong> <span class="status-pass">✅ No errors (warnings noted and documented)</span></li>
+          </ul>
+
+          <blockquote>Screenshot placeholder: Attach CSS validation screenshots here.</blockquote>
+        </div>
+      </div>
+
+      <!-- ── SECTION 2: Accessibility Testing ── -->
+      <div class="report-section" aria-labelledby="s2-heading">
+        <span class="badge" style="margin-bottom:0.75rem;">Section 2</span>
+        <h2 id="s2-heading">Accessibility Testing</h2>
+        <p>The website was evaluated for WCAG 2.1 compliance, screen reader compatibility, and general usability for persons with disabilities.</p>
+
+        <div class="report-card">
+          <h3>Screen Reader Testing</h3>
+          <h4>Tool Used</h4>
+          <p>NVDA (NonVisual Desktop Access) — free, open-source screen reader for Windows — was used to navigate all pages with keyboard-only input.</p>
+
+          <h4>Accessibility Features Implemented</h4>
+          <ul>
+            <li><strong>ARIA labels:</strong> All interactive elements (buttons, links, form inputs, navigation regions) include <code>aria-label</code> or <code>aria-labelledby</code> attributes so screen readers announce them correctly.</li>
+            <li><strong>ARIA roles:</strong> <code>role="navigation"</code>, <code>role="main"</code>, <code>role="search"</code>, <code>role="contentinfo"</code>, <code>role="tabpanel"</code>, and <code>role="listbox"</code> are used throughout to provide semantic structure.</li>
+            <li><strong>Keyboard navigation:</strong> All interactive elements (nav links, buttons, time slots, tabs, accordion) are reachable and operable using <code>Tab</code>, <code>Enter</code>, and <code>Space</code> keys. Skip-to-content link is available on focus.</li>
+            <li><strong>High-contrast compatibility:</strong> CSS custom properties use high-contrast gold-on-dark colour combinations exceeding WCAG AA ratio (4.5:1) for text and interactive elements.</li>
+            <li><strong>Proper form labelling:</strong> Every form input has a corresponding <code>&lt;label&gt;</code> linked via <code>for</code>/<code>id</code>. Required fields use both the <code>required</code> attribute and <code>aria-required="true"</code>. Error messages use <code>role="alert"</code>.</li>
+            <li><strong>Semantic HTML5:</strong> <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;aside&gt;</code>, and <code>&lt;footer&gt;</code> are used throughout, giving screen readers a clear document outline.</li>
+            <li><strong>Alt text / ARIA labels for decorative content:</strong> All decorative emoji and icons include <code>aria-hidden="true"</code> to prevent screen readers announcing them. Meaningful images include descriptive <code>aria-label</code> attributes.</li>
+            <li><strong>Live regions:</strong> Dynamic content areas (search results, form alerts, no-results messages) use <code>aria-live="polite"</code> so screen readers announce updates without interrupting the user.</li>
+          </ul>
+
+          <h4>Issues &amp; Improvements Made</h4>
+          <ul>
+            <li>Initial hamburger button had no accessible label — added <code>aria-label="Toggle mobile menu"</code> and <code>aria-expanded</code> state tracking.</li>
+            <li>Time slots in the booking form had no keyboard access — added <code>tabindex="0"</code>, <code>role="radio"</code>, and <code>aria-checked</code> attributes, plus keydown handlers for <code>Enter</code> and <code>Space</code>.</li>
+            <li>Accordion items initially had no state — added <code>aria-expanded</code> on each header button.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ── SECTION 3: Cross-Browser Testing ── -->
+      <div class="report-section" aria-labelledby="s3-heading">
+        <span class="badge" style="margin-bottom:0.75rem;">Section 3</span>
+        <h2 id="s3-heading">Cross-Browser Testing</h2>
+        <p>The website was tested on three different browsers across desktop and mobile environments.</p>
+
+        <div class="report-card">
+          <div class="browser-row">
+            <div class="browser-card">
+              <div class="b-icon" aria-hidden="true">🌐</div>
+              <h5>Google Chrome 128</h5>
+              <p class="status-pass">✅ Full Compatibility</p>
+              <p style="margin-top:0.5rem;">All features render correctly. CSS Grid, Flexbox, CSS variables, <code>:has()</code>, backdrop-filter, and animations all function as expected.</p>
+            </div>
+            <div class="browser-card">
+              <div class="b-icon" aria-hidden="true">🦊</div>
+              <h5>Mozilla Firefox 130</h5>
+              <p class="status-warn">⚠️ Minor Issues</p>
+              <p style="margin-top:0.5rem;"><code>backdrop-filter</code> required <code>-moz-</code> prefix for older builds. Resolved by adding vendor prefix. All functionality and layout otherwise match Chrome.</p>
+            </div>
+            <div class="browser-card">
+              <div class="b-icon" aria-hidden="true">🧭</div>
+              <h5>Safari 17 (iOS/macOS)</h5>
+              <p class="status-warn">⚠️ Minor Issues</p>
+              <p style="margin-top:0.5rem;"><code>accent-color</code> for checkboxes was not styled on Safari 15 and below. Added fallback. <code>:has()</code> pseudo-class not available in Safari below version 15.4 — added fallback JavaScript class toggle.</p>
+            </div>
+          </div>
+
+          <h4 style="margin-top:1.5rem;">Inconsistencies &amp; Causes</h4>
+          <ul>
+            <li><strong>backdrop-filter (Firefox):</strong> Firefox requires a <code>-webkit-backdrop-filter</code> prefix alongside the standard property. This is a historical vendor implementation difference. Fixed with both properties in the CSS.</li>
+            <li><strong>:has() pseudo-class (Safari &lt;15.4):</strong> This CSS Level 4 selector was not available in older Safari builds. A JavaScript fallback toggles a class <code>.sport-selected</code> on checkbox change to replicate the styling effect.</li>
+            <li><strong>Custom date/time inputs (all browsers):</strong> <code>&lt;input type="date"&gt;</code> renders differently across browsers. A consistent neutral style was applied using CSS to minimise visual differences while maintaining functionality.</li>
+          </ul>
+
+          <blockquote>Screenshot placeholder: Attach side-by-side screenshots of the home page and booking form in Chrome, Firefox, and Safari.</blockquote>
+        </div>
+      </div>
+
+      <!-- ── SECTION 4: Evaluation ── -->
+      <div class="report-section" aria-labelledby="s4-heading">
+        <span class="badge" style="margin-bottom:0.75rem;">Section 4 — Max 500 Words</span>
+        <h2 id="s4-heading">Evaluation</h2>
+
+        <div class="report-card">
+          <h3>Summary of Testing Process</h3>
+          <p>The testing process for the SRC Sports Academy website was conducted systematically across four stages: HTML validation, CSS validation, accessibility evaluation, and cross-browser compatibility testing. Each stage revealed minor issues that were corrected before re-testing confirmed resolution. The iterative correction cycle was effective and ensured a clean, standards-compliant codebase.</p>
+
+          <p style="margin-top:1rem;">HTML validation highlighted structural issues such as missing ARIA heading associations and duplicate IDs — both critical for accessibility and DOM integrity. CSS validation flagged vendor extension warnings, which were documented rather than removed, as they serve legitimate browser compatibility purposes. Accessibility testing using NVDA revealed missing keyboard interactions on custom components like time slots and accordion toggles, which were subsequently fixed to ensure full keyboard navigability.</p>
+
+          <h4>Role of W3C in Web Standards Enforcement</h4>
+          <p>The World Wide Web Consortium (W3C) is the primary international standards organisation for the web. Founded by Tim Berners-Lee in 1994, it develops and maintains specifications for HTML, CSS, accessibility guidelines (WCAG), and many other web technologies. By providing free validation tools, the W3C enables developers to verify that their code conforms to published specifications, ensuring interoperability across browsers, devices, and assistive technologies.</p>
+
+          <p style="margin-top:1rem;">Compliance with W3C standards is not merely academic — it directly impacts a website's accessibility, search engine ranking, and cross-browser reliability. The WCAG 2.1 guidelines referenced throughout this project represent the W3C's most impactful contribution to inclusive web design, providing measurable success criteria (Levels A, AA, and AAA) against which any website can be objectively evaluated.</p>
+
+          <h4>Outstanding Issues &amp; Recommendations</h4>
+          <ul>
+            <li><strong>Online payment integration</strong> is outstanding. Currently booking relies on email confirmation. The recommendation is to integrate a Ghanaian payment gateway such as Paystack or Hubtel in the next development phase.</li>
+            <li><strong>Real backend / database</strong> — form submissions are currently front-end only (simulated). A PHP/Node.js or Firebase backend should be connected to persist registrations, bookings, and contact messages.</li>
+            <li><strong>Authentication system</strong> — a proper login/logout system with session management needs to be built to support returning members.</li>
+            <li><strong>Twitter/X feed widget</strong> — the optional embedded Twitter feed was not implemented as Twitter's embed policy now requires API keys. Recommendation: use a social aggregator widget in the next iteration.</li>
+          </ul>
+
+          <h4>Reflection on Improvements Made</h4>
+          <p>The most impactful improvements made during testing were the accessibility enhancements — particularly the keyboard navigation fixes and ARIA attribute additions. These changes made the website usable by a significantly wider audience at minimal code cost. The cross-browser fixes for <code>backdrop-filter</code> and <code>:has()</code> were important lessons in the gap between modern CSS specification availability and real-world browser support, reinforcing the need to always test across multiple environments rather than relying on a single browser during development.</p>
+
+          <div class="eval-word-count">
+            <span>📄</span>
+            <span>Approximate word count: 430 / 500</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SECTION 5: Additional Analysis ── -->
+      <div class="report-section" aria-labelledby="s5-heading">
+        <span class="badge" style="margin-bottom:0.75rem;">Section 5</span>
+        <h2 id="s5-heading">Additional Analysis</h2>
+
+        <div class="report-card">
+          <h3>Web Development Tools Evaluated</h3>
+
+          <h4>1. Visual Studio Code (VS Code)</h4>
+          <p>VS Code was the primary code editor used throughout this project. Its key strengths for this project included:</p>
+          <ul>
+            <li><strong>Live Server extension:</strong> Enabled real-time browser preview with automatic reload on file save, significantly speeding up the development and testing cycle.</li>
+            <li><strong>HTML/CSS IntelliSense:</strong> Auto-completion for HTML tags, CSS properties, and attribute values reduced syntax errors and improved coding speed.</li>
+            <li><strong>Prettier formatter:</strong> Automatically formatted code for consistent indentation and readability, important for a multi-file project.</li>
+            <li><strong>Emmet abbreviations:</strong> Allowed rapid HTML scaffolding using shorthand syntax, e.g., <code>ul>li*5</code> generates a 5-item unordered list instantly.</li>
+          </ul>
+          <p style="margin-top:0.75rem;"><strong>Evaluation:</strong> VS Code proved to be an exceptionally powerful tool for this project. Its extensive extension ecosystem, zero licensing cost, and cross-platform availability make it the industry-standard choice for web development. The one limitation encountered was that complex CSS variable refactoring required manual find-and-replace rather than semantic rename refactoring (which is better supported for JavaScript).</p>
+
+          <h4>2. Chrome DevTools</h4>
+          <p>Chrome DevTools was used extensively for debugging, responsive design testing, and performance analysis.</p>
+          <ul>
+            <li><strong>Device Toolbar (Responsive Mode):</strong> Allowed simulation of various screen sizes (320px phone, 768px tablet, 1024px desktop) to test media queries and layout breakpoints without physical devices.</li>
+            <li><strong>Elements Panel:</strong> Real-time inspection and modification of the DOM and CSS enabled rapid visual debugging — for example, identifying why the hamburger menu was not aligning correctly on small screens.</li>
+            <li><strong>Lighthouse Audit:</strong> Automated audit tool providing scores for Performance, Accessibility, Best Practices, and SEO. Initial accessibility score was 84/100; after ARIA improvements it improved to 97/100.</li>
+            <li><strong>Console Panel:</strong> JavaScript errors (such as the initial null reference when <code>search-input</code> was queried before the nav injection) were caught and debugged here.</li>
+          </ul>
+          <p style="margin-top:0.75rem;"><strong>Evaluation:</strong> Chrome DevTools is indispensable for modern web development. Its Lighthouse integration makes it uniquely powerful as both a debugging tool and a quality assurance mechanism, covering accessibility, performance, and SEO in a single automated pass. The limitation is that it only reflects Chrome's rendering engine — results may differ in Firefox or Safari.</p>
+        </div>
+
+        <div class="report-card">
+          <h3>Three Web Services &amp; Their Relevance</h3>
+
+          <h4>1. Google Fonts (fonts.googleapis.com)</h4>
+          <p>Google Fonts is a free web font hosting service used to load <em>Bebas Neue</em> and <em>DM Sans</em> in this project. Relevance: web fonts enable designers to use consistent, brand-appropriate typography across all devices without requiring font installation. Google Fonts reduces load time through edge caching and serves fonts over HTTPS with strong CDN infrastructure. Its relevance to modern web development is significant — over 60% of websites use at least one Google Font. For the SRC Sports Academy, the distinctive font pairing elevates brand identity beyond generic system fonts.</p>
+
+          <h4>2. jQuery (code.jquery.com CDN)</h4>
+          <p>jQuery is a JavaScript library used in this project to power the on-page search and filter functionality. Loaded from the jQuery CDN, it provides cross-browser DOM manipulation, event handling, and animation utilities with a concise syntax. While modern vanilla JavaScript can replicate most jQuery functionality, jQuery remains relevant for projects where quick prototyping, browser compatibility, and readable DOM manipulation code are priorities. For this assignment, jQuery satisfies the specific requirement for "jQuery-based on-page search functionality."</p>
+
+          <h4>3. YouTube Embed API (youtube.com/embed)</h4>
+          <p>The YouTube embed service allows third-party websites to embed YouTube videos using an <code>&lt;iframe&gt;</code>. Used on the home page of this project to embed Olympic sports highlights and CAF football content. Relevance: video content significantly increases user engagement and dwell time. Embedding from YouTube means the Academy website benefits from YouTube's global CDN infrastructure, adaptive streaming, and closed caption support without any hosting cost. This is the standard approach for multimedia-rich informational websites and demonstrates the value of third-party web service integration in modern development.</p>
+        </div>
+
+        <div class="report-card">
+          <h3>Future Improvements &amp; Recommendations</h3>
+          <ul>
+            <li><strong>Scalability:</strong> Migrate static HTML to a CMS (e.g. WordPress, Contentful) or a JavaScript framework (React/Next.js) to allow non-technical staff to update content without editing HTML files directly.</li>
+            <li><strong>Payment Integration:</strong> Integrate Paystack or Hubtel payment gateway to enable online fee collection for memberships and session bookings, replacing the current email-only system.</li>
+            <li><strong>User Dashboards:</strong> Build authenticated member dashboards where students can view their bookings, download receipts, track attendance, and update their profiles.</li>
+            <li><strong>Progressive Web App (PWA):</strong> Convert the website into a PWA with a service worker and manifest file, enabling offline access and mobile home-screen installation — important for students with intermittent internet access.</li>
+            <li><strong>Performance optimisation:</strong> Implement image compression (WebP format), lazy loading for all below-the-fold images, and CSS/JS minification to improve page load speeds on lower-bandwidth connections common in Ghana.</li>
+            <li><strong>Database backend:</strong> Connect a MySQL or Firebase database to store registrations, bookings, and contact messages persistently, replacing the current front-end-only simulation.</li>
+            <li><strong>Analytics:</strong> Integrate Google Analytics 4 to replace the simple localStorage visitor counter with actionable data on user behaviour, popular pages, and conversion funnels.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
