@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Contact SRC Sports Academy — get in touch with our team, find our location, and send us a message."/>
+  <title>Contact Us — SRC Sports Academy</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏆</text></svg>"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    @media (max-width: 768px) { .contact-layout { grid-template-columns: 1fr; } }
+
+    .contact-info-item {
+      display: flex; align-items: flex-start; gap: 1.25rem;
+      padding: 1.5rem;
+      background: var(--clr-card);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-md);
+      margin-bottom: 1rem;
+      transition: var(--transition);
+    }
+    .contact-info-item:hover { border-color: rgba(240,180,41,0.3); }
+    .contact-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      border-radius: var(--radius-sm);
+      background: rgba(240,180,41,0.12);
+      border: 1px solid rgba(240,180,41,0.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+    }
+    .contact-info-item h4 { font-size: 0.88rem; color: var(--clr-muted); margin-bottom: 0.25rem; font-family: var(--ff-body); font-weight: 500; letter-spacing: 0; }
+    .contact-info-item p, .contact-info-item a { font-size: 0.95rem; color: var(--clr-text); }
+    .contact-info-item a:hover { color: var(--clr-gold); }
+
+    .map-placeholder {
+      background: var(--clr-card);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-md);
+      aspect-ratio: 16/9;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 0.75rem; color: var(--clr-muted); font-size: 0.9rem;
+      margin-top: 1.5rem;
+    }
+    .map-placeholder .map-icon { font-size: 3.5rem; }
+  </style>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <!-- Page Hero -->
+  <section class="page-hero" aria-labelledby="contact-title">
+    <div class="container">
+      <span class="badge">Get In Touch</span>
+      <h1 id="contact-title">Contact <span class="text-gold">Us</span></h1>
+      <p>Have a question, feedback, or sponsorship inquiry? We'd love to hear from you. Our team responds within 1–2 business days.</p>
+    </div>
+  </section>
+
+  <section class="section-pad">
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- CONTACT INFO + MAP -->
+        <div>
+          <div class="section-heading">
+            <span class="badge">Find Us</span>
+            <h2>Our Information</h2>
+          </div>
+
+          <div class="contact-info-item" role="region" aria-label="Office address">
+            <div class="contact-icon" aria-hidden="true">📍</div>
+            <div>
+              <h4>Address</h4>
+              <p>SRC Sports Office, Room 12, Student Union Building<br/>Pentecost University, Accra, Ghana</p>
+            </div>
+          </div>
+
+          <div class="contact-info-item" role="region" aria-label="Email contact">
+            <div class="contact-icon" aria-hidden="true">✉️</div>
+            <div>
+              <h4>Email</h4>
+              <a href="mailto:sports@pentvars.edu.gh">sports@pentvars.edu.gh</a><br/>
+              <a href="mailto:src@pentvars.edu.gh">src@pentvars.edu.gh</a>
+            </div>
+          </div>
+
+          <div class="contact-info-item" role="region" aria-label="Phone contact">
+            <div class="contact-icon" aria-hidden="true">📞</div>
+            <div>
+              <h4>Phone</h4>
+              <a href="tel:+233000000000">+233 00 000 0000</a><br/>
+              <p style="font-size:0.82rem;margin-top:0.25rem;">Mon–Fri, 9:00 AM – 5:00 PM</p>
+            </div>
+          </div>
+
+          <div class="contact-info-item" role="region" aria-label="Office hours">
+            <div class="contact-icon" aria-hidden="true">🕐</div>
+            <div>
+              <h4>Office Hours</h4>
+              <p>Monday – Friday: 9:00 AM – 5:00 PM</p>
+              <p>Saturday: 9:00 AM – 1:00 PM</p>
+              <p>Sunday: Closed</p>
+            </div>
+          </div>
+
+          <!-- Social links -->
+          <div class="contact-info-item" role="region" aria-label="Social media links">
+            <div class="contact-icon" aria-hidden="true">🌐</div>
+            <div>
+              <h4>Follow Us</h4>
+              <div class="social-links" style="margin-top:0.5rem;">
+                <a href="#" aria-label="Follow on Facebook">📘</a>
+                <a href="#" aria-label="Follow on Twitter">🐦</a>
+                <a href="#" aria-label="Follow on Instagram">📸</a>
+                <a href="#" aria-label="Watch on YouTube">▶️</a>
+                <a href="#" aria-label="Join WhatsApp group">💬</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Map placeholder -->
+          <div class="map-placeholder" role="img" aria-label="Map showing location of Pentecost University, Accra">
+            <div class="map-icon" aria-hidden="true">🗺️</div>
+            <p>Pentecost University, Accra</p>
+            <a href="https://maps.google.com/?q=Pentecost+University+Accra" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:0.82rem;padding:0.4rem 1rem;">Open in Google Maps ↗</a>
+          </div>
+        </div>
+
+        <!-- CONTACT FORM -->
+        <div>
+          <div class="section-heading">
+            <span class="badge">Message Us</span>
+            <h2>Send a Message</h2>
+          </div>
+          <div class="form-wrap">
+            <form data-validate data-form-type="contact" id="contact-form" novalidate aria-label="Contact form">
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="ct-fname">First Name <span class="req" aria-hidden="true">*</span></label>
+                  <input type="text" id="ct-fname" name="firstName" required minlength="2"
+                         placeholder="e.g. Ama" aria-required="true" autocomplete="given-name"/>
+                  <span class="error-msg" role="alert">Please enter your first name.</span>
+                </div>
+                <div class="form-group">
+                  <label for="ct-lname">Last Name <span class="req" aria-hidden="true">*</span></label>
+                  <input type="text" id="ct-lname" name="lastName" required minlength="2"
+                         placeholder="e.g. Mensah" aria-required="true" autocomplete="family-name"/>
+                  <span class="error-msg" role="alert">Please enter your last name.</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="ct-email">Email Address <span class="req" aria-hidden="true">*</span></label>
+                <input type="email" id="ct-email" name="email" required placeholder="you@example.com"
+                       aria-required="true" autocomplete="email"/>
+                <span class="error-msg" role="alert">Please enter a valid email.</span>
+              </div>
+
+              <div class="form-group">
+                <label for="ct-phone">Phone Number</label>
+                <input type="tel" id="ct-phone" name="phone" placeholder="+233 XX XXX XXXX" autocomplete="tel"/>
+              </div>
+
+              <div class="form-group">
+                <label for="ct-subject">Subject <span class="req" aria-hidden="true">*</span></label>
+                <select id="ct-subject" name="subject" required aria-required="true">
+                  <option value="">Select a topic…</option>
+                  <option>General Enquiry</option>
+                  <option>Booking Assistance</option>
+                  <option>Registration Help</option>
+                  <option>Sports Programs Information</option>
+                  <option>Sponsorship / Partnership</option>
+                  <option>Feedback / Complaints</option>
+                  <option>Press / Media</option>
+                  <option>Other</option>
+                </select>
+                <span class="error-msg" role="alert">Please select a subject.</span>
+              </div>
+
+              <div class="form-group">
+                <label for="ct-message">Message <span class="req" aria-hidden="true">*</span></label>
+                <textarea id="ct-message" name="message" required minlength="10"
+                          placeholder="Write your message here…" style="min-height:150px;"
+                          aria-required="true"></textarea>
+                <span class="error-msg" role="alert">Please enter a message (at least 10 characters).</span>
+              </div>
+
+              <div class="form-group">
+                <label class="checkbox-wrap">
+                  <input type="checkbox" name="newsletter" aria-label="Subscribe to newsletter"/>
+                  <span>Also subscribe me to the SRC Sports Academy newsletter</span>
+                </label>
+              </div>
+
+              <!-- CAPTCHA -->
+              <div class="captcha-box" role="group" aria-label="CAPTCHA verification">
+                <label for="ct-captcha" style="font-size:0.85rem;color:var(--clr-text);white-space:nowrap;">Enter code:</label>
+                <span class="captcha-challenge" aria-label="CAPTCHA characters to type">XXXXX</span>
+                <input type="text" id="ct-captcha" name="captcha" maxlength="5" placeholder="Type code…"
+                       aria-label="CAPTCHA answer" autocomplete="off"/>
+                <button type="button" class="captcha-refresh" aria-label="Refresh CAPTCHA">🔄</button>
+              </div>
+
+              <div class="form-submit">
+                <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:1rem;">
+                  Send Message →
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sponsorship CTA -->
+  <section class="section-pad" style="background:var(--clr-surface);border-top:1px solid var(--clr-border);" aria-labelledby="sponsor-cta">
+    <div class="container text-center">
+      <span class="badge">Partner With Us</span>
+      <h2 id="sponsor-cta" style="margin:1rem 0;">Interested in Sponsorship?</h2>
+      <p style="max-width:520px;margin:0 auto 2rem;">The SRC Sports Academy is actively seeking corporate sponsors to fund facility upgrades, national competitions, and community programs. Get visible branding across 500+ active members.</p>
+      <a href="mailto:sports@pentvars.edu.gh?subject=Sponsorship%20Enquiry" class="btn btn-primary">Email Us About Sponsorship →</a>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

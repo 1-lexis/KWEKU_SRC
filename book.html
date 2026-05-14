@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Book a training session at SRC Sports Academy online. Select your sport, preferred date and time, and submit your booking request."/>
+  <title>Book a Session — SRC Sports Academy</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏆</text></svg>"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .booking-layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 3rem;
+      align-items: start;
+    }
+    @media (max-width: 1024px) { .booking-layout { grid-template-columns: 1fr; } }
+
+    .time-slots {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem;
+      margin-top: 0.5rem;
+    }
+    @media (max-width: 480px) { .time-slots { grid-template-columns: repeat(2, 1fr); } }
+
+    .time-slot {
+      background: var(--clr-surface); border: 1px solid var(--clr-border);
+      border-radius: var(--radius-sm); padding: 0.55rem 0.75rem;
+      text-align: center; font-size: 0.85rem; cursor: pointer;
+      transition: var(--transition); color: var(--clr-muted);
+    }
+    .time-slot:hover { border-color: var(--clr-gold); color: var(--clr-gold); }
+    .time-slot.selected { background: rgba(240,180,41,0.15); border-color: var(--clr-gold); color: var(--clr-gold); font-weight: 600; }
+    .time-slot.unavailable { opacity: 0.35; pointer-events: none; text-decoration: line-through; }
+
+    .booking-info-card {
+      background: var(--clr-card); border: 1px solid var(--clr-border);
+      border-radius: var(--radius-md); padding: 1.5rem; margin-bottom: 1.25rem;
+    }
+    .booking-info-card h4 { margin-bottom: 0.75rem; }
+    .info-row { display: flex; justify-content: space-between; gap: 0.75rem;
+      font-size: 0.88rem; padding: 0.4rem 0; border-bottom: 1px solid var(--clr-border); }
+    .info-row:last-child { border-bottom: none; }
+    .info-row .val { color: var(--clr-text); font-weight: 500; text-align: right; }
+
+    .process-step {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 0.9rem 0; border-bottom: 1px solid var(--clr-border);
+    }
+    .process-step:last-child { border-bottom: none; }
+    .process-icon {
+      width: 32px; height: 32px; border-radius: 50%;
+      border: 2px solid var(--clr-gold); color: var(--clr-gold);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem; flex-shrink: 0;
+    }
+    .process-text h5 { font-size: 0.88rem; color: var(--clr-text); margin-bottom: 0.2rem; }
+    .process-text p  { font-size: 0.8rem; }
+
+    .accessibility-note {
+      background: rgba(240,180,41,0.08); border: 1px solid rgba(240,180,41,0.2);
+      border-radius: var(--radius-sm); padding: 0.75rem 1rem;
+      font-size: 0.82rem; color: var(--clr-muted); margin-top: 1rem;
+      display: flex; gap: 0.5rem; align-items: flex-start;
+    }
+  </style>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <!-- Page Hero -->
+  <section class="page-hero" aria-labelledby="book-title">
+    <div class="container">
+      <span class="badge">Book Online</span>
+      <h1 id="book-title">Book a <span class="text-gold">Training Session</span></h1>
+      <p>Submit your session request online. Booking is email-based — we'll confirm your slot within 24 hours.</p>
+    </div>
+  </section>
+
+  <section class="section-pad">
+    <div class="container">
+      <div class="booking-layout">
+
+        <!-- BOOKING FORM -->
+        <div>
+          <div class="form-wrap">
+            <h3 style="margin-bottom:0.4rem;">Session Booking Form</h3>
+            <p style="font-size:0.88rem;margin-bottom:2rem;">Fields marked <span style="color:var(--clr-accent);">*</span> are required. Bookings are confirmed by email within 24 hours.</p>
+
+            <form data-validate data-form-type="book" id="booking-form" novalidate aria-label="Session booking form">
+
+              <!-- Contact Details -->
+              <h4 style="font-family:var(--ff-display);letter-spacing:0.06em;margin-bottom:1.25rem;color:var(--clr-gold);">Your Details</h4>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="bk-fname">First Name <span class="req" aria-hidden="true">*</span></label>
+                  <input type="text" id="bk-fname" name="firstName" required minlength="2"
+                         placeholder="e.g. Kwame" aria-required="true" autocomplete="given-name"/>
+                  <span class="error-msg" role="alert">Please enter your first name.</span>
+                </div>
+                <div class="form-group">
+                  <label for="bk-lname">Last Name <span class="req" aria-hidden="true">*</span></label>
+                  <input type="text" id="bk-lname" name="lastName" required minlength="2"
+                         placeholder="e.g. Boateng" aria-required="true" autocomplete="family-name"/>
+                  <span class="error-msg" role="alert">Please enter your last name.</span>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="bk-email">Email Address <span class="req" aria-hidden="true">*</span></label>
+                  <input type="email" id="bk-email" name="email" required placeholder="you@example.com"
+                         aria-required="true" autocomplete="email"/>
+                  <span class="error-msg" role="alert">Please enter a valid email address.</span>
+                </div>
+                <div class="form-group">
+                  <label for="bk-phone">Phone Number <span class="req" aria-hidden="true">*</span></label>
+                  <input type="tel" id="bk-phone" name="phone" required placeholder="+233 XX XXX XXXX"
+                         aria-required="true" autocomplete="tel"/>
+                  <span class="error-msg" role="alert">Please enter a valid phone number.</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="bk-member-type">Member Type <span class="req" aria-hidden="true">*</span></label>
+                <select id="bk-member-type" name="memberType" required aria-required="true">
+                  <option value="">Select…</option>
+                  <option>Registered Academy Member</option>
+                  <option>Student (Pentecost University)</option>
+                  <option>Community Member</option>
+                  <option>First-Time Visitor</option>
+                </select>
+                <span class="error-msg" role="alert">Please select your member type.</span>
+              </div>
+
+              <!-- Session Details -->
+              <h4 style="font-family:var(--ff-display);letter-spacing:0.06em;margin-top:2rem;margin-bottom:1.25rem;color:var(--clr-gold);">Session Details</h4>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="bk-sport">Sport / Program <span class="req" aria-hidden="true">*</span></label>
+                  <select id="bk-sport" name="sport" required aria-required="true">
+                    <option value="">Choose a sport…</option>
+                    <optgroup label="Established Programs">
+                      <option>⚽ Football</option>
+                      <option>🏉 Rugby</option>
+                      <option>🩰 Ballet</option>
+                      <option>🏓 Table Tennis</option>
+                      <option>🤾 Handball</option>
+                      <option>🤸 Gymnastics</option>
+                    </optgroup>
+                    <optgroup label="New Programs (2025)">
+                      <option>🤼 Wrestling</option>
+                      <option>🥋 Taekwondo</option>
+                      <option>🥋 Judo</option>
+                      <option>🏐 Volleyball</option>
+                    </optgroup>
+                  </select>
+                  <span class="error-msg" role="alert">Please select a sport.</span>
+                </div>
+                <div class="form-group">
+                  <label for="bk-level">Experience Level <span class="req" aria-hidden="true">*</span></label>
+                  <select id="bk-level" name="level" required aria-required="true">
+                    <option value="">Select…</option>
+                    <option>Beginner (no experience)</option>
+                    <option>Intermediate (some experience)</option>
+                    <option>Advanced (competitive level)</option>
+                  </select>
+                  <span class="error-msg" role="alert">Please select your experience level.</span>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="bk-date">Preferred Date <span class="req" aria-hidden="true">*</span></label>
+                  <input type="date" id="bk-date" name="date" required aria-required="true"/>
+                  <span class="error-msg" role="alert">Please select a date.</span>
+                </div>
+                <div class="form-group">
+                  <label for="bk-participants">Number of Participants <span class="req" aria-hidden="true">*</span></label>
+                  <select id="bk-participants" name="participants" required aria-required="true">
+                    <option value="">Select…</option>
+                    <option>1 (Just me)</option>
+                    <option>2–3 people</option>
+                    <option>4–6 people</option>
+                    <option>7+ (Group booking)</option>
+                  </select>
+                  <span class="error-msg" role="alert">Please select number of participants.</span>
+                </div>
+              </div>
+
+              <!-- Time slot picker -->
+              <div class="form-group">
+                <label id="time-slot-label">Preferred Time Slot <span class="req" aria-hidden="true">*</span></label>
+                <input type="hidden" id="bk-time" name="time" required/>
+                <div class="time-slots" role="group" aria-labelledby="time-slot-label">
+                  <div class="time-slot" tabindex="0" role="radio" aria-checked="false" data-time="7:00 AM">7:00 AM</div>
+                  <div class="time-slot" tabindex="0" role="radio" aria-checked="false" data-time="9:00 AM">9:00 AM</div>
+                  <div class="time-slot unavailable" tabindex="-1" role="radio" aria-checked="false" aria-disabled="true" data-time="11:00 AM">11:00 AM</div>
+                  <div class="time-slot" tabindex="0" role="radio" aria-checked="false" data-time="1:00 PM">1:00 PM</div>
+                  <div class="time-slot" tabindex="0" role="radio" aria-checked="false" data-time="3:00 PM">3:00 PM</div>
+                  <div class="time-slot" tabindex="0" role="radio" aria-checked="false" data-time="5:00 PM">5:00 PM</div>
+                  <div class="time-slot unavailable" tabindex="-1" role="radio" aria-checked="false" aria-disabled="true" data-time="7:00 PM">7:00 PM</div>
+                  <div class="time-slot" tabindex="0" role="radio" aria-checked="false" data-time="Saturday AM">Sat AM</div>
+                  <div class="time-slot" tabindex="0" role="radio" aria-checked="false" data-time="Saturday PM">Sat PM</div>
+                </div>
+              </div>
+
+              <!-- Accessibility needs -->
+              <div class="form-group" style="margin-top:1.5rem;">
+                <label for="bk-notes">Special Requirements / Notes</label>
+                <textarea id="bk-notes" name="notes" placeholder="e.g. accessibility needs, injuries, medical conditions, previous experience details…" aria-describedby="bk-notes-hint"></textarea>
+                <p id="bk-notes-hint" style="font-size:0.78rem;color:var(--clr-muted);margin-top:0.3rem;">Include any accessibility requirements and we will ensure appropriate accommodations.</p>
+              </div>
+
+              <!-- Medical checkbox -->
+              <div class="form-group">
+                <label class="checkbox-wrap">
+                  <input type="checkbox" name="medicalClear" id="bk-medical" required aria-required="true"
+                         aria-label="Confirm medical fitness (required)"/>
+                  <span>I confirm I am medically fit to participate in physical activity, or will consult a doctor before my session. <span class="req" aria-hidden="true">*</span></span>
+                </label>
+              </div>
+
+              <!-- CAPTCHA -->
+              <div class="captcha-box" role="group" aria-label="CAPTCHA verification">
+                <label for="bk-captcha" style="font-size:0.85rem;color:var(--clr-text);white-space:nowrap;">Enter code:</label>
+                <span class="captcha-challenge" aria-label="CAPTCHA code to enter">XXXXX</span>
+                <input type="text" id="bk-captcha" name="captcha" maxlength="5" placeholder="Type code…"
+                       aria-label="CAPTCHA answer" autocomplete="off"/>
+                <button type="button" class="captcha-refresh" aria-label="Refresh CAPTCHA code">🔄</button>
+              </div>
+
+              <div class="accessibility-note" role="note">
+                <span aria-hidden="true">♿</span>
+                <span>This form is designed for keyboard navigation. Use <kbd>Tab</kbd> to move between fields, <kbd>Space</kbd> or <kbd>Enter</kbd> to select time slots. All form fields have ARIA labels for screen reader support.</span>
+              </div>
+
+              <div class="form-submit" style="margin-top:1.5rem;">
+                <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:1rem;">
+                  📅 Submit Booking Request →
+                </button>
+              </div>
+              <p style="font-size:0.8rem;text-align:center;margin-top:1rem;color:var(--clr-muted);">A confirmation email will be sent to your address within 24 hours.</p>
+            </form>
+          </div>
+        </div>
+
+        <!-- SIDEBAR -->
+        <aside aria-label="Booking information sidebar">
+          <div class="booking-info-card">
+            <h4>📋 Booking Summary</h4>
+            <div class="info-row"><span>Sport</span><span class="val" id="summary-sport">—</span></div>
+            <div class="info-row"><span>Date</span><span class="val" id="summary-date">—</span></div>
+            <div class="info-row"><span>Time</span><span class="val" id="summary-time">—</span></div>
+            <div class="info-row"><span>Level</span><span class="val" id="summary-level">—</span></div>
+            <div class="info-row"><span>Participants</span><span class="val" id="summary-participants">—</span></div>
+          </div>
+
+          <div class="booking-info-card">
+            <h4>How Booking Works</h4>
+            <div class="process-step">
+              <div class="process-icon" aria-hidden="true">1</div>
+              <div class="process-text">
+                <h5>Submit Form</h5>
+                <p>Complete this form with your preferred sport, date, and time slot.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="process-icon" aria-hidden="true">2</div>
+              <div class="process-text">
+                <h5>Email Confirmation</h5>
+                <p>We'll reply within 24 hours to confirm or suggest an alternative slot.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="process-icon" aria-hidden="true">3</div>
+              <div class="process-text">
+                <h5>Attend Your Session</h5>
+                <p>Show your confirmation email at the venue. Arrive 10 minutes early.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="process-icon" aria-hidden="true">4</div>
+              <div class="process-text">
+                <h5>Online Payments (Coming Soon)</h5>
+                <p>Pay securely online — launching Semester 2, 2026.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="booking-info-card">
+            <h4>📍 Venue &amp; Contact</h4>
+            <p style="font-size:0.85rem;margin-bottom:0.5rem;">SRC Sports Office, Room 12<br/>Student Union Building<br/>Pentecost University, Accra</p>
+            <p style="font-size:0.85rem;"><strong style="color:var(--clr-text);">Email:</strong> sports@pentvars.edu.gh</p>
+            <p style="font-size:0.85rem;"><strong style="color:var(--clr-text);">Phone:</strong> +233 00 000 0000</p>
+            <p style="font-size:0.85rem;margin-top:0.5rem;"><strong style="color:var(--clr-text);">Office Hours:</strong> Mon–Fri, 9 AM – 5 PM</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      /* Time slot picker */
+      const slots = document.querySelectorAll(".time-slot:not(.unavailable)");
+      const hidden = document.getElementById("bk-time");
+      slots.forEach(function (slot) {
+        slot.addEventListener("click",  selectSlot.bind(null, slot));
+        slot.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); selectSlot(slot); }
+        });
+      });
+      function selectSlot(slot) {
+        slots.forEach(function (s) { s.classList.remove("selected"); s.setAttribute("aria-checked","false"); });
+        slot.classList.add("selected");
+        slot.setAttribute("aria-checked","true");
+        if (hidden) { hidden.value = slot.dataset.time; updateSummary(); }
+      }
+
+      /* Live booking summary */
+      function updateSummary() {
+        const sport   = document.getElementById("bk-sport");
+        const date    = document.getElementById("bk-date");
+        const level   = document.getElementById("bk-level");
+        const participants = document.getElementById("bk-participants");
+        if (sport) document.getElementById("summary-sport").textContent        = sport.value || "—";
+        if (date)  document.getElementById("summary-date").textContent         = date.value  || "—";
+        if (hidden) document.getElementById("summary-time").textContent        = hidden.value || "—";
+        if (level) document.getElementById("summary-level").textContent        = level.value || "—";
+        if (participants) document.getElementById("summary-participants").textContent = participants.value || "—";
+      }
+      ["bk-sport","bk-date","bk-level","bk-participants"].forEach(function (id) {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener("change", updateSummary);
+      });
+
+      /* Set min date for date picker */
+      const datePicker = document.getElementById("bk-date");
+      if (datePicker) datePicker.min = new Date().toISOString().split("T")[0];
+    });
+  </script>
+</body>
+</html>

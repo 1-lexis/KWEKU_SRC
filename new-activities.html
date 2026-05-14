@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Discover the four new sports at SRC Sports Academy — Wrestling, Taekwondo, Judo, and Volleyball. Join trials and community Q&A."/>
+  <title>New Activities — SRC Sports Academy</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏆</text></svg>"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .forum-post {
+      background: var(--clr-card);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+      transition: var(--transition);
+    }
+    .forum-post:hover { border-color: rgba(240,180,41,0.3); }
+    .forum-post-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.6rem; }
+    .forum-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--clr-gold);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; color: var(--clr-bg); font-weight: 700;
+      flex-shrink: 0;
+    }
+    .forum-post-header .meta { font-size: 0.8rem; color: var(--clr-muted); }
+    .forum-post-header .name { font-weight: 600; color: var(--clr-text); font-size: 0.92rem; }
+    .forum-post p { font-size: 0.9rem; }
+    .forum-reply-form textarea {
+      width: 100%; background: var(--clr-surface); border: 1px solid var(--clr-border);
+      border-radius: var(--radius-sm); color: var(--clr-text); font-family: var(--ff-body);
+      font-size: 0.92rem; padding: 0.75rem 1rem; resize: vertical; min-height: 90px;
+      outline: none; transition: var(--transition);
+    }
+    .forum-reply-form textarea:focus { border-color: var(--clr-gold); box-shadow: 0 0 0 3px rgba(240,180,41,0.12); }
+    #forum-thread { margin-top: 1.5rem; }
+  </style>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <!-- Page Hero -->
+  <section class="page-hero" aria-labelledby="new-title">
+    <div class="container">
+      <span class="badge">Brand New in 2025</span>
+      <h1 id="new-title">New <span class="text-gold">Sports Programs</span></h1>
+      <p>Thanks to new funding secured by the SRC, we are proud to launch four exciting new disciplines. Explore, ask questions, and sign up today.</p>
+    </div>
+  </section>
+
+  <!-- NEW SPORTS DETAIL -->
+  <section class="section-pad" aria-labelledby="new-sports-list">
+    <div class="container">
+      <div class="section-heading">
+        <span class="badge">The New Four</span>
+        <h2 id="new-sports-list">Discover Your Sport</h2>
+        <p>Each program is led by a qualified coach and open to beginners and experienced athletes alike.</p>
+      </div>
+
+      <!-- Wrestling -->
+      <div class="new-sport-full" aria-label="Wrestling program">
+        <div class="sport-icon-lg" aria-hidden="true">🤼</div>
+        <div>
+          <span class="badge" style="margin-bottom:0.75rem;">New Sport</span>
+          <h3>Wrestling</h3>
+          <p>Wrestling is one of the oldest competitive sports in the world. Our program focuses on freestyle and Greco-Roman techniques, building explosive strength, core stability, and tactical grappling skills. Sessions are open to all fitness levels — no prior experience required.</p>
+          <div class="details">
+            <span class="detail-pill">📅 <strong>Schedule:</strong> Mon &amp; Wed, 4:00 PM – 6:00 PM</span>
+            <span class="detail-pill">📍 <strong>Venue:</strong> Sports Hall B</span>
+            <span class="detail-pill">👤 <strong>Coach:</strong> Sensei Kofi Agyei</span>
+            <span class="detail-pill">💰 <strong>Fee:</strong> GH₵ 80 / semester</span>
+          </div>
+          <a href="book.html" class="btn btn-primary" style="margin-top:1.25rem;">Book a Trial Session</a>
+        </div>
+      </div>
+
+      <!-- Taekwondo -->
+      <div class="new-sport-full" aria-label="Taekwondo program">
+        <div class="sport-icon-lg" aria-hidden="true">🥋</div>
+        <div>
+          <span class="badge" style="margin-bottom:0.75rem;">New Sport</span>
+          <h3>Taekwondo</h3>
+          <p>Taekwondo is a Korean martial art emphasising fast kicks, agility, and mental discipline. Our World Taekwondo–certified instructor delivers structured belt progression from white belt upward. Community members are welcome alongside university students.</p>
+          <div class="details">
+            <span class="detail-pill">📅 <strong>Schedule:</strong> Tue &amp; Thu, 5:00 PM – 7:00 PM</span>
+            <span class="detail-pill">📍 <strong>Venue:</strong> Multipurpose Hall</span>
+            <span class="detail-pill">👤 <strong>Coach:</strong> Master Ama Boateng</span>
+            <span class="detail-pill">💰 <strong>Fee:</strong> GH₵ 90 / semester</span>
+          </div>
+          <a href="book.html" class="btn btn-primary" style="margin-top:1.25rem;">Book a Trial Session</a>
+        </div>
+      </div>
+
+      <!-- Judo -->
+      <div class="new-sport-full" aria-label="Judo program">
+        <div class="sport-icon-lg" aria-hidden="true">🥋</div>
+        <div>
+          <span class="badge" style="margin-bottom:0.75rem;">New Sport</span>
+          <h3>Judo</h3>
+          <p>Judo — "the gentle way" — teaches participants to use an opponent's force against them through throws, holds, and ground control. Our Judo program follows the IJF curriculum and is ideal for students interested in self-defence, discipline, and competition.</p>
+          <div class="details">
+            <span class="detail-pill">📅 <strong>Schedule:</strong> Sat, 9:00 AM – 12:00 PM</span>
+            <span class="detail-pill">📍 <strong>Venue:</strong> Martial Arts Dojo</span>
+            <span class="detail-pill">👤 <strong>Coach:</strong> Sensei Yaw Darko</span>
+            <span class="detail-pill">💰 <strong>Fee:</strong> GH₵ 85 / semester</span>
+          </div>
+          <a href="book.html" class="btn btn-primary" style="margin-top:1.25rem;">Book a Trial Session</a>
+        </div>
+      </div>
+
+      <!-- Volleyball -->
+      <div class="new-sport-full" aria-label="Volleyball program">
+        <div class="sport-icon-lg" aria-hidden="true">🏐</div>
+        <div>
+          <span class="badge" style="margin-bottom:0.75rem;">New Sport</span>
+          <h3>Volleyball</h3>
+          <p>Both indoor and beach volleyball are offered. The program caters to beginners learning serve-and-pass fundamentals as well as experienced players looking to join our competitive mixed league. Great for teamwork, communication, and cardiovascular fitness.</p>
+          <div class="details">
+            <span class="detail-pill">📅 <strong>Schedule:</strong> Fri, 3:00 PM – 5:30 PM</span>
+            <span class="detail-pill">📍 <strong>Venue:</strong> Outdoor Courts / Gym</span>
+            <span class="detail-pill">👤 <strong>Coach:</strong> Coach Priscilla Tetteh</span>
+            <span class="detail-pill">💰 <strong>Fee:</strong> GH₵ 75 / semester</span>
+          </div>
+          <a href="book.html" class="btn btn-primary" style="margin-top:1.25rem;">Book a Trial Session</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY Q&A / FORUM -->
+  <section class="section-pad" style="background:var(--clr-surface);border-top:1px solid var(--clr-border);" aria-labelledby="forum-heading">
+    <div class="container">
+      <div class="section-heading">
+        <span class="badge">Community</span>
+        <h2 id="forum-heading">Questions &amp; Discussion</h2>
+        <p>Have questions about the new programs? Ask here and our coaches will respond.</p>
+      </div>
+
+      <div style="max-width:720px;">
+        <!-- Existing posts -->
+        <div id="forum-thread" aria-live="polite" aria-label="Community forum posts">
+          <div class="forum-post">
+            <div class="forum-post-header">
+              <div class="forum-avatar" aria-hidden="true">A</div>
+              <div>
+                <div class="name">Akosua M.</div>
+                <div class="meta">Student · Oct 10, 2025</div>
+              </div>
+            </div>
+            <p>Is prior martial arts experience required for the Taekwondo program, or can complete beginners join?</p>
+          </div>
+          <div class="forum-post" style="margin-left:2rem;">
+            <div class="forum-post-header">
+              <div class="forum-avatar" style="background:var(--clr-accent);" aria-hidden="true">C</div>
+              <div>
+                <div class="name">Master Ama Boateng (Coach)</div>
+                <div class="meta">Coach · Oct 11, 2025</div>
+              </div>
+            </div>
+            <p>No prior experience needed at all, Akosua! We start from white belt fundamentals and progress at a pace comfortable for each student. Everyone is welcome.</p>
+          </div>
+
+          <div class="forum-post">
+            <div class="forum-post-header">
+              <div class="forum-avatar" style="background:#7c3aed;" aria-hidden="true">K</div>
+              <div>
+                <div class="name">Kweku O.</div>
+                <div class="meta">Community Member · Oct 14, 2025</div>
+              </div>
+            </div>
+            <p>Can community members (non-students) participate in the Volleyball league?</p>
+          </div>
+          <div class="forum-post" style="margin-left:2rem;">
+            <div class="forum-post-header">
+              <div class="forum-avatar" style="background:var(--clr-accent);" aria-hidden="true">C</div>
+              <div>
+                <div class="name">Coach Priscilla Tetteh</div>
+                <div class="meta">Coach · Oct 14, 2025</div>
+              </div>
+            </div>
+            <p>Absolutely! The mixed volleyball league is open to community members. Just register on our website and book a trial session to get started.</p>
+          </div>
+        </div>
+
+        <!-- Post a question form -->
+        <div class="form-wrap" style="margin-top:2rem;">
+          <h4 style="margin-bottom:1.25rem;">Post a Question or Comment</h4>
+          <form data-validate data-form-type="contact" id="forum-form" aria-label="Post a question to the forum">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="forum-name">Your Name <span class="req" aria-hidden="true">*</span></label>
+                <input type="text" id="forum-name" name="name" required minlength="2" placeholder="e.g. Ama Asante" aria-required="true"/>
+                <span class="error-msg" role="alert">Please enter your name.</span>
+              </div>
+              <div class="form-group">
+                <label for="forum-role">You are a <span class="req" aria-hidden="true">*</span></label>
+                <select id="forum-role" name="role" required aria-required="true">
+                  <option value="">Select…</option>
+                  <option>Student</option>
+                  <option>Community Member</option>
+                  <option>Parent</option>
+                  <option>Other</option>
+                </select>
+                <span class="error-msg" role="alert">Please select your role.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="forum-sport">Related Sport</label>
+              <select id="forum-sport" name="sport">
+                <option value="">General / Any</option>
+                <option>Wrestling</option>
+                <option>Taekwondo</option>
+                <option>Judo</option>
+                <option>Volleyball</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="forum-msg">Your Question / Comment <span class="req" aria-hidden="true">*</span></label>
+              <textarea id="forum-msg" name="message" required minlength="10" placeholder="Type your question here…" aria-required="true"></textarea>
+              <span class="error-msg" role="alert">Please enter a message (min 10 characters).</span>
+            </div>
+            <!-- CAPTCHA -->
+            <div class="captcha-box" role="group" aria-label="CAPTCHA verification">
+              <label for="forum-captcha" style="white-space:nowrap;font-size:0.85rem;color:var(--clr-text);">Enter code:</label>
+              <span class="captcha-challenge" aria-label="CAPTCHA code — enter the characters shown">XXXXX</span>
+              <input type="text" id="forum-captcha" name="captcha" maxlength="5" placeholder="Type code…" aria-label="CAPTCHA answer" autocomplete="off"/>
+              <button type="button" class="captcha-refresh" aria-label="Refresh CAPTCHA code">🔄</button>
+            </div>
+            <div class="form-submit">
+              <button type="submit" class="btn btn-primary">Post Question →</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ ACCORDION -->
+  <section class="section-pad" aria-labelledby="faq-heading">
+    <div class="container">
+      <div class="section-heading">
+        <span class="badge">FAQ</span>
+        <h2 id="faq-heading">Frequently Asked Questions</h2>
+      </div>
+      <div style="max-width:720px;" role="list">
+        <div class="accordion-item" role="listitem">
+          <button class="accordion-header" aria-expanded="false">
+            Do I need to buy my own equipment?
+            <span class="icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <p>For trial sessions, basic equipment is provided by the Academy. Once you enrol, you will need to purchase your own uniform (gi/dobok). The Academy can assist with sourcing affordable options locally.</p>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item" role="listitem">
+          <button class="accordion-header" aria-expanded="false">
+            Are the programs open to female students?
+            <span class="icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <p>Absolutely. All four new programs are fully co-ed and actively encourage female participation. We have both male and female assistant coaches in each discipline.</p>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item" role="listitem">
+          <button class="accordion-header" aria-expanded="false">
+            Can I join multiple programs at the same time?
+            <span class="icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <p>Yes! You may register for up to two sports programs concurrently. Each program has its own fee structure. Contact us for a bundled discount if you enrol in more than one.</p>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item" role="listitem">
+          <button class="accordion-header" aria-expanded="false">
+            Is there a minimum age requirement?
+            <span class="icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <p>University students have no minimum age restriction. For community participants, the minimum age is 15 for all programs. Parental consent is required for participants under 18.</p>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item" role="listitem">
+          <button class="accordion-header" aria-expanded="false">
+            How do I pay my registration fee?
+            <span class="icon" aria-hidden="true">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <p>Currently fees are paid in person at the SRC Sports Office (Room 12, Student Union Building). Mobile Money (MTN / Vodafone) payment is coming soon. Online payment integration is planned for Semester 2 2026.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

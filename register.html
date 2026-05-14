@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Register for SRC Sports Academy membership, select your sports, and subscribe to the newsletter."/>
+  <title>Register — SRC Sports Academy</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏆</text></svg>"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .register-layout {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 3rem;
+      align-items: start;
+    }
+    @media (max-width: 1024px) {
+      .register-layout { grid-template-columns: 1fr; }
+    }
+    .register-sidebar .card { margin-bottom: 1.25rem; }
+    .register-sidebar .card .card-body h4 { margin-bottom: 0.5rem; }
+    .step-list { counter-reset: steps; }
+    .step-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 0.85rem 0; border-bottom: 1px solid var(--clr-border);
+    }
+    .step-item:last-child { border-bottom: none; }
+    .step-num {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--clr-gold); color: var(--clr-bg);
+      font-family: var(--ff-display); font-size: 0.85rem;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-text { font-size: 0.88rem; }
+    .sports-checkbox-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;
+    }
+    .sport-check-item {
+      display: flex; align-items: center; gap: 0.6rem;
+      background: var(--clr-surface); border: 1px solid var(--clr-border);
+      border-radius: var(--radius-sm); padding: 0.6rem 0.85rem;
+      cursor: pointer; transition: var(--transition); font-size: 0.88rem;
+    }
+    .sport-check-item:has(input:checked) {
+      border-color: var(--clr-gold); background: rgba(240,180,41,0.08);
+    }
+    .sport-check-item input { accent-color: var(--clr-gold); }
+    .strength-bar {
+      height: 5px; border-radius: 100px;
+      background: var(--clr-border); margin-top: 0.4rem; overflow: hidden;
+    }
+    .strength-fill {
+      height: 100%; border-radius: 100px; width: 0;
+      transition: width 0.3s ease, background 0.3s ease;
+    }
+    .strength-label { font-size: 0.75rem; color: var(--clr-muted); margin-top: 0.25rem; }
+  </style>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+
+  <!-- Page Hero -->
+  <section class="page-hero" aria-labelledby="register-title">
+    <div class="container">
+      <span class="badge">Join the Academy</span>
+      <h1 id="register-title">Create Your <span class="text-gold">Account</span></h1>
+      <p>Register as an academy member to book sessions, receive event notifications, and join our community newsletter.</p>
+    </div>
+  </section>
+
+  <section class="section-pad">
+    <div class="container">
+      <div class="register-layout">
+
+        <!-- REGISTRATION FORM -->
+        <div>
+          <div class="form-wrap">
+            <h3 style="margin-bottom:0.4rem;">Member Registration</h3>
+            <p style="font-size:0.88rem;margin-bottom:2rem;">All fields marked <span style="color:var(--clr-accent);">*</span> are required.</p>
+
+            <form data-validate data-form-type="register" id="reg-form" novalidate aria-label="Member registration form">
+
+              <!-- Personal Details -->
+              <h4 style="font-family:var(--ff-display);letter-spacing:0.06em;margin-bottom:1.25rem;color:var(--clr-gold);">Personal Information</h4>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="reg-fname">First Name <span class="req" aria-hidden="true">*</span></label>
+                  <input type="text" id="reg-fname" name="firstName" required minlength="2" placeholder="e.g. Ama" aria-required="true" autocomplete="given-name"/>
+                  <span class="error-msg" role="alert">Please enter your first name.</span>
+                </div>
+                <div class="form-group">
+                  <label for="reg-lname">Last Name <span class="req" aria-hidden="true">*</span></label>
+                  <input type="text" id="reg-lname" name="lastName" required minlength="2" placeholder="e.g. Asante" aria-required="true" autocomplete="family-name"/>
+                  <span class="error-msg" role="alert">Please enter your last name.</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="reg-email">Email Address <span class="req" aria-hidden="true">*</span></label>
+                <input type="email" id="reg-email" name="email" required placeholder="you@example.com" aria-required="true" autocomplete="email"/>
+                <span class="error-msg" role="alert">Please enter a valid email address.</span>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="reg-phone">Phone Number <span class="req" aria-hidden="true">*</span></label>
+                  <input type="tel" id="reg-phone" name="phone" required placeholder="+233 XX XXX XXXX" aria-required="true" autocomplete="tel"/>
+                  <span class="error-msg" role="alert">Please enter a valid phone number.</span>
+                </div>
+                <div class="form-group">
+                  <label for="reg-dob">Date of Birth <span class="req" aria-hidden="true">*</span></label>
+                  <input type="date" id="reg-dob" name="dob" required aria-required="true"/>
+                  <span class="error-msg" role="alert">Please select your date of birth.</span>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="reg-type">Member Type <span class="req" aria-hidden="true">*</span></label>
+                  <select id="reg-type" name="memberType" required aria-required="true">
+                    <option value="">Select…</option>
+                    <option>Student (Pentecost University)</option>
+                    <option>Staff (Pentecost University)</option>
+                    <option>Community Member</option>
+                    <option>Alumni</option>
+                  </select>
+                  <span class="error-msg" role="alert">Please select your membership type.</span>
+                </div>
+                <div class="form-group">
+                  <label for="reg-gender">Gender</label>
+                  <select id="reg-gender" name="gender">
+                    <option value="">Prefer not to say</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group" id="student-id-group">
+                <label for="reg-student-id">Student / Staff ID</label>
+                <input type="text" id="reg-student-id" name="studentId" placeholder="e.g. PU/2023/0042" autocomplete="off"/>
+              </div>
+
+              <!-- Sports Selection -->
+              <h4 style="font-family:var(--ff-display);letter-spacing:0.06em;margin-top:2rem;margin-bottom:1.25rem;color:var(--clr-gold);">Choose Your Sport(s)</h4>
+              <fieldset style="border:none;padding:0;" aria-label="Sport selection">
+                <legend class="hidden">Select one or more sports</legend>
+                <div class="sports-checkbox-grid">
+                  <label class="sport-check-item"><input type="checkbox" name="sports" value="football" aria-label="Football"/> ⚽ Football</label>
+                  <label class="sport-check-item"><input type="checkbox" name="sports" value="rugby" aria-label="Rugby"/> 🏉 Rugby</label>
+                  <label class="sport-check-item"><input type="checkbox" name="sports" value="ballet" aria-label="Ballet"/> 🩰 Ballet</label>
+                  <label class="sport-check-item"><input type="checkbox" name="sports" value="table-tennis" aria-label="Table Tennis"/> 🏓 Table Tennis</label>
+                  <label class="sport-check-item"><input type="checkbox" name="sports" value="handball" aria-label="Handball"/> 🤾 Handball</label>
+                  <label class="sport-check-item"><input type="checkbox" name="sports" value="gymnastics" aria-label="Gymnastics"/> 🤸 Gymnastics</label>
+                  <label class="sport-check-item"><input type="checkbox" name="sports" value="wrestling" aria-label="Wrestling — New"/>🤼 Wrestling <span class="badge" style="font-size:0.6rem;padding:0.1rem 0.4rem;margin-left:4px;">New</span></label>
+                  <label class="sport-check-item"><input type="checkbox" name="sports" value="taekwondo" aria-label="Taekwondo — New"/> 🥋 Taekwondo <span class="badge" style="font-size:0.6rem;padding:0.1rem 0.4rem;margin-left:4px;">New</span></label>
+                  <label class="sport-check-item"><input type="checkbox" name="sports" value="judo" aria-label="Judo — New"/> 🥋 Judo <span class="badge" style="font-size:0.6rem;padding:0.1rem 0.4rem;margin-left:4px;">New</span></label>
+                  <label class="sport-check-item"><input type="checkbox" name="sports" value="volleyball" aria-label="Volleyball — New"/> 🏐 Volleyball <span class="badge" style="font-size:0.6rem;padding:0.1rem 0.4rem;margin-left:4px;">New</span></label>
+                </div>
+              </fieldset>
+
+              <!-- Password -->
+              <h4 style="font-family:var(--ff-display);letter-spacing:0.06em;margin-top:2rem;margin-bottom:1.25rem;color:var(--clr-gold);">Account Security</h4>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="reg-password">Password <span class="req" aria-hidden="true">*</span></label>
+                  <input type="password" id="reg-password" name="password" required minlength="8" placeholder="Minimum 8 characters" aria-required="true" autocomplete="new-password"/>
+                  <div class="strength-bar" aria-hidden="true"><div class="strength-fill" id="strength-fill"></div></div>
+                  <div class="strength-label" id="strength-label" aria-live="polite"></div>
+                  <span class="error-msg" role="alert">Password must be at least 8 characters.</span>
+                </div>
+                <div class="form-group">
+                  <label for="reg-confirm">Confirm Password <span class="req" aria-hidden="true">*</span></label>
+                  <input type="password" id="reg-confirm" name="confirm" required placeholder="Repeat your password" aria-required="true" autocomplete="new-password"/>
+                  <span class="error-msg" role="alert">Passwords do not match.</span>
+                </div>
+              </div>
+
+              <!-- Newsletter & consent -->
+              <h4 style="font-family:var(--ff-display);letter-spacing:0.06em;margin-top:2rem;margin-bottom:1.25rem;color:var(--clr-gold);">Subscriptions &amp; Consent</h4>
+              <div class="form-group">
+                <label class="checkbox-wrap">
+                  <input type="checkbox" name="newsletter" id="reg-newsletter" aria-label="Subscribe to newsletter"/>
+                  <span>Subscribe to the SRC Sports Academy newsletter — match results, tips, and event announcements.</span>
+                </label>
+              </div>
+              <div class="form-group">
+                <label class="checkbox-wrap">
+                  <input type="checkbox" name="sms" id="reg-sms" aria-label="Subscribe to SMS alerts"/>
+                  <span>Receive SMS notifications for booking confirmations and important updates.</span>
+                </label>
+              </div>
+              <div class="form-group">
+                <label class="checkbox-wrap">
+                  <input type="checkbox" name="terms" id="reg-terms" required aria-required="true" aria-label="Accept terms and conditions (required)"/>
+                  <span>I agree to the <a href="#" style="color:var(--clr-gold);text-decoration:underline;">Terms &amp; Conditions</a> and <a href="#" style="color:var(--clr-gold);text-decoration:underline;">Privacy Policy</a> <span class="req" aria-hidden="true">*</span></span>
+                </label>
+              </div>
+              <div class="form-group">
+                <label class="checkbox-wrap">
+                  <input type="checkbox" name="consent" id="reg-consent" required aria-required="true" aria-label="Consent to participation risks (required)"/>
+                  <span>I acknowledge that sports participation involves physical risks and I accept responsibility for my own safety. <span class="req" aria-hidden="true">*</span></span>
+                </label>
+              </div>
+
+              <!-- CAPTCHA -->
+              <div class="captcha-box" role="group" aria-label="CAPTCHA security verification">
+                <label for="reg-captcha" style="font-size:0.85rem;color:var(--clr-text);white-space:nowrap;">Enter code:</label>
+                <span class="captcha-challenge" aria-label="CAPTCHA code — type these characters">XXXXX</span>
+                <input type="text" id="reg-captcha" name="captcha" maxlength="5" placeholder="Type code…" aria-label="CAPTCHA answer" autocomplete="off"/>
+                <button type="button" class="captcha-refresh" aria-label="Refresh CAPTCHA">🔄</button>
+              </div>
+
+              <div class="form-submit">
+                <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:1rem;">
+                  Create My Account →
+                </button>
+              </div>
+              <p style="font-size:0.8rem;text-align:center;margin-top:1rem;">Already have an account? <a href="#" style="color:var(--clr-gold);">Sign in</a></p>
+            </form>
+          </div>
+        </div>
+
+        <!-- SIDEBAR -->
+        <aside aria-label="Registration information sidebar">
+          <!-- Steps -->
+          <div class="card" style="margin-bottom:1.25rem;">
+            <div class="card-body">
+              <h4 style="margin-bottom:1.25rem;">How It Works</h4>
+              <div class="step-list">
+                <div class="step-item">
+                  <div class="step-num" aria-hidden="true">1</div>
+                  <div class="step-text">Fill in your personal details and choose your sport(s).</div>
+                </div>
+                <div class="step-item">
+                  <div class="step-num" aria-hidden="true">2</div>
+                  <div class="step-text">You'll receive a confirmation email (simulated) to verify your address.</div>
+                </div>
+                <div class="step-item">
+                  <div class="step-num" aria-hidden="true">3</div>
+                  <div class="step-text">Visit the SRC Sports Office with your ID to complete in-person verification.</div>
+                </div>
+                <div class="step-item">
+                  <div class="step-num" aria-hidden="true">4</div>
+                  <div class="step-text">Book your first session online and start training!</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Membership benefits -->
+          <div class="card" style="margin-bottom:1.25rem;">
+            <div class="card-body">
+              <h4 style="margin-bottom:1rem;">Member Benefits</h4>
+              <ul style="display:flex;flex-direction:column;gap:0.6rem;">
+                <li style="font-size:0.88rem;display:flex;gap:0.5rem;align-items:flex-start;"><span>✅</span> Access to all Academy facilities</li>
+                <li style="font-size:0.88rem;display:flex;gap:0.5rem;align-items:flex-start;"><span>✅</span> Priority booking for training sessions</li>
+                <li style="font-size:0.88rem;display:flex;gap:0.5rem;align-items:flex-start;"><span>✅</span> Eligibility for academy competitions</li>
+                <li style="font-size:0.88rem;display:flex;gap:0.5rem;align-items:flex-start;"><span>✅</span> Weekly newsletter with tips &amp; news</li>
+                <li style="font-size:0.88rem;display:flex;gap:0.5rem;align-items:flex-start;"><span>✅</span> Discounts on sports equipment (partner shops)</li>
+                <li style="font-size:0.88rem;display:flex;gap:0.5rem;align-items:flex-start;"><span>✅</span> Access to coaching resources &amp; videos</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Privacy note -->
+          <div class="card">
+            <div class="card-body">
+              <h4 style="margin-bottom:0.6rem;">🔒 Privacy &amp; Data</h4>
+              <p style="font-size:0.82rem;">Your data is stored securely and used only for academy operations. We do not share your information with third parties without consent. See our <a href="#" style="color:var(--clr-gold);">Privacy Policy</a> for details.</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    /* Password strength meter */
+    document.addEventListener("DOMContentLoaded", function () {
+      const pwInput  = document.getElementById("reg-password");
+      const fill     = document.getElementById("strength-fill");
+      const label    = document.getElementById("strength-label");
+      const confirm  = document.getElementById("reg-confirm");
+
+      if (pwInput) {
+        pwInput.addEventListener("input", function () {
+          const v = pwInput.value;
+          let score = 0;
+          if (v.length >= 8)  score++;
+          if (v.length >= 12) score++;
+          if (/[A-Z]/.test(v))  score++;
+          if (/[0-9]/.test(v))  score++;
+          if (/[^A-Za-z0-9]/.test(v)) score++;
+          const pct    = (score / 5) * 100;
+          const colors = ["#ef4444","#f97316","#eab308","#22c55e","#16a34a"];
+          const labels = ["Very weak","Weak","Fair","Strong","Very strong"];
+          fill.style.width  = pct + "%";
+          fill.style.background = colors[Math.max(score-1,0)];
+          label.textContent = v.length ? labels[Math.max(score-1,0)] : "";
+        });
+      }
+
+      if (confirm) {
+        confirm.addEventListener("blur", function () {
+          if (pwInput && confirm.value !== pwInput.value) {
+            confirm.classList.add("error");
+          } else {
+            confirm.classList.remove("error");
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

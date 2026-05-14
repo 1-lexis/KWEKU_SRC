@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SRC Sports Academy – Pentecost University. Join our elite sports programs including Football, Rugby, Wrestling, Taekwondo, Judo, Volleyball and more." />
+  <meta name="keywords" content="SRC Sports Academy, Pentecost University, sports, football, rugby, taekwondo, judo, wrestling, volleyball" />
+
+  <title>SRC Sports Academy | Pentecost University</title>
+
+  <!-- Favicon placeholder -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏆</text></svg>" />
+
+  <!-- External CSS only (project requirement) -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Font Awesome for icons (CDN) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwOKA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- jQuery (for search and interactivity – project requirement) -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+          integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+          crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <!-- ① ACCESSIBILITY: Skip to main content (screen reader / keyboard nav) -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ─────────────────────────────────────────────────────────
+       NAVBAR
+  ───────────────────────────────────────────────────────────── -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+
+    <!-- Logo -->
+    <a href="index.html" class="nav-logo" aria-label="SRC Sports Academy Home">
+      SRC <span>SPORTS</span>
+    </a>
+
+    <!-- Desktop nav links -->
+    <ul class="nav-links" role="list">
+      <li><a href="index.html"          aria-current="page">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="new-activities.html">Sports</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="register.html">Register</a></li>
+    </ul>
+
+    <!-- Search bar -->
+    <div class="nav-search" role="search" aria-label="Site search">
+      <label for="search-input" class="sr-only">Search the site</label>
+      <input
+        type="search"
+        id="search-input"
+        placeholder="Search…"
+        aria-label="Search"
+        autocomplete="off"
+      />
+      <button id="search-btn" aria-label="Submit search">
+        <i class="fa fa-search" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <!-- Book Now CTA -->
+    <a href="book.html" class="btn-book" role="button" aria-label="Book a training session">
+      Book Now
+    </a>
+
+    <!-- Hamburger (mobile) -->
+    <button
+      id="hamburger"
+      class="hamburger"
+      aria-label="Toggle mobile menu"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+    >
+      <span></span><span></span><span></span>
+    </button>
+
+  </nav>
+
+  <!-- Search results dropdown -->
+  <div id="search-results" role="listbox" aria-label="Search results"></div>
+
+  <!-- Mobile nav -->
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile navigation">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="new-activities.html">Sports</a>
+    <a href="events.html">Events</a>
+    <a href="blog.html">Blog</a>
+    <a href="register.html">Register</a>
+    <a href="book.html" class="btn-book" style="text-align:center;margin-top:0.5rem;">Book Now</a>
+  </nav>
+
+
+  <main id="main-content">
+
+    <section class="hero" aria-label="Hero: Welcome to SRC Sports Academy">
+
+      <video
+        class="hero-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        aria-hidden="true"
+        poster="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=1600&q=80"
+      >
+        <!--
+          To use a local video: <source src="media/hero.mp4" type="video/mp4" />
+          Below is a free Wikimedia sports video as fallback reference.
+        -->
+        <source src="https://upload.wikimedia.org/wikipedia/commons/transcoded/c/c0/2018_Women%27s_Volleyball_Nations_League_-_Dominican_Republic_vs_Turkey_20180608.webm/2018_Women%27s_Volleyball_Nations_League_-_Dominican_Republic_vs_Turkey_20180608.webm.480p.webm" type="video/webm" />
+      </video>
+
+      <div class="hero-overlay" aria-hidden="true"></div>
+
+      <div class="hero-content">
+        <p class="hero-eyebrow">Pentecost University · Student Representative Council</p>
+        <h1 class="hero-title">
+          SRC<br>
+          <em>Sports</em>
+          Academy
+        </h1>
+        <p class="hero-subtitle">
+          Train. Compete. Excel. Discover world-class sports programs built for student athletes and the wider community.
+        </p>
+        <div class="hero-buttons">
+          <a href="book.html"         class="btn-primary"   aria-label="Book a training session now">Book a Session</a>
+          <a href="new-activities.html" class="btn-secondary" aria-label="Explore our sports programs">Explore Sports</a>
+        </div>
+      </div>
+
+      <div class="hero-scroll-cue" aria-hidden="true">
+        <span>Scroll</span>
+        <div class="arrow"></div>
+      </div>
+
+    </section>
+
+    <!-- ② VISITOR COUNTER STRIP -->
+    <div class="counter-strip" role="status" aria-live="polite" aria-label="Site visitor count">
+      🏅 &nbsp; You are visitor #<span id="visit-count">0</span> &nbsp; · &nbsp; Welcome to SRC Sports Academy
+    </div>
+
+    <!-- ③ STATS BAR -->
+    <div class="stats-bar" aria-label="Academy highlights">
+      <div class="stat-item">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Sports Offered</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Active Athletes</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">4</div>
+        <div class="stat-label">New Programs</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">12+</div>
+        <div class="stat-label">Qualified Coaches</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2024</div>
+        <div class="stat-label">Founded</div>
+      </div>
+    </div>
+
+    <!-- ④ SPORTS PROGRAMS GRID -->
+    <section class="sports-section" id="sports" aria-labelledby="sports-heading">
+      <div class="section-header">
+        <p class="section-label">What We Offer</p>
+        <h2 class="section-title" id="sports-heading">Our Sports Programs</h2>
+        <p class="section-subtitle">
+          From established classics to exciting new disciplines — there's a sport for every athlete at SRC Academy.
+        </p>
+      </div>
+
+      <div class="sports-grid" role="list">
+
+        <!-- EXISTING SPORTS -->
+        <article class="sport-card" role="listitem" tabindex="0" aria-label="Football program">
+          <div class="sport-img-wrap">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Camponotus_flavomarginatus_ant.jpg/320px-Camponotus_flavomarginatus_ant.jpg"
+              alt="Football"
+              loading="lazy"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+            />
+            <div class="sport-icon" style="display:none;position:absolute;z-index:2;">⚽</div>
+          </div>
+          <div class="sport-img-wrap" style="display:none;align-items:center;justify-content:center;height:160px;background:var(--navy-light)">
+            <span style="font-size:4rem">⚽</span>
+          </div>
+          <div class="sport-info">
+            <h3 class="sport-name">Football</h3>
+            <p class="sport-desc">Competitive 11-a-side and futsal training for all skill levels.</p>
+            <span class="sport-badge">Established</span>
+          </div>
+        </article>
+
+        <article class="sport-card" role="listitem" tabindex="0" aria-label="Rugby program">
+          <div class="sport-img-wrap" style="background:var(--navy-light);display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:4rem">🏉</span>
+          </div>
+          <div class="sport-info">
+            <h3 class="sport-name">Rugby</h3>
+            <p class="sport-desc">Build strength, teamwork and resilience through contact rugby.</p>
+            <span class="sport-badge">Established</span>
+          </div>
+        </article>
+
+        <article class="sport-card" role="listitem" tabindex="0" aria-label="Ballet program">
+          <div class="sport-img-wrap" style="background:var(--navy-light);display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:4rem">🩰</span>
+          </div>
+          <div class="sport-info">
+            <h3 class="sport-name">Ballet</h3>
+            <p class="sport-desc">Classical dance and performance technique for beginners and advanced.</p>
+            <span class="sport-badge">Established</span>
+          </div>
+        </article>
+
+        <article class="sport-card" role="listitem" tabindex="0" aria-label="Table Tennis program">
+          <div class="sport-img-wrap" style="background:var(--navy-light);display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:4rem">🏓</span>
+          </div>
+          <div class="sport-info">
+            <h3 class="sport-name">Table Tennis</h3>
+            <p class="sport-desc">Fast-paced precision sport with inter-university league participation.</p>
+            <span class="sport-badge">Established</span>
+          </div>
+        </article>
+
+        <article class="sport-card" role="listitem" tabindex="0" aria-label="Handball program">
+          <div class="sport-img-wrap" style="background:var(--navy-light);display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:4rem">🤾</span>
+          </div>
+          <div class="sport-info">
+            <h3 class="sport-name">Handball</h3>
+            <p class="sport-desc">High-energy team sport combining speed, strength and coordination.</p>
+            <span class="sport-badge">Established</span>
+          </div>
+        </article>
+
+        <article class="sport-card" role="listitem" tabindex="0" aria-label="Gymnastics program">
+          <div class="sport-img-wrap" style="background:var(--navy-light);display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:4rem">🤸</span>
+          </div>
+          <div class="sport-info">
+            <h3 class="sport-name">Gymnastics</h3>
+            <p class="sport-desc">Develop flexibility, core strength and artistic athletic expression.</p>
+            <span class="sport-badge">Established</span>
+          </div>
+        </article>
+
+        <!-- NEW SPORTS -->
+        <article class="sport-card" role="listitem" tabindex="0" aria-label="Wrestling program – NEW">
+          <div class="sport-img-wrap" style="background:var(--navy-light);display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:4rem">🤼</span>
+          </div>
+          <div class="sport-info">
+            <h3 class="sport-name">Wrestling</h3>
+            <p class="sport-desc">Olympic-style grappling discipline emphasising technique and conditioning.</p>
+            <span class="sport-badge new">New 2025</span>
+          </div>
+        </article>
+
+        <article class="sport-card" role="listitem" tabindex="0" aria-label="Taekwondo program – NEW">
+          <div class="sport-img-wrap" style="background:var(--navy-light);display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:4rem">🥋</span>
+          </div>
+          <div class="sport-info">
+            <h3 class="sport-name">Taekwondo</h3>
+            <p class="sport-desc">Korean martial art focusing on head-height kicks and fast kicking techniques.</p>
+            <span class="sport-badge new">New 2025</span>
+          </div>
+        </article>
+
+        <article class="sport-card" role="listitem" tabindex="0" aria-label="Judo program – NEW">
+          <div class="sport-img-wrap" style="background:var(--navy-light);display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:4rem">🥋</span>
+          </div>
+          <div class="sport-info">
+            <h3 class="sport-name">Judo</h3>
+            <p class="sport-desc">The "gentle way" — throws, pins and submissions in a respectful environment.</p>
+            <span class="sport-badge new">New 2025</span>
+          </div>
+        </article>
+
+        <article class="sport-card" role="listitem" tabindex="0" aria-label="Volleyball program – NEW">
+          <div class="sport-img-wrap" style="background:var(--navy-light);display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:4rem">🏐</span>
+          </div>
+          <div class="sport-info">
+            <h3 class="sport-name">Volleyball</h3>
+            <p class="sport-desc">Indoor and beach volleyball with structured league and training sessions.</p>
+            <span class="sport-badge new">New 2025</span>
+          </div>
+        </article>
+
+      </div><!-- /sports-grid -->
+    </section>
+
+    <!-- ⑤ MEDIA HIGHLIGHTS SECTION -->
+    <section class="media-section" id="media" aria-labelledby="media-heading">
+      <p class="section-label" style="text-align:center">In The Arena</p>
+      <h2 class="section-title" id="media-heading" style="text-align:center">Sports News &amp; Highlights</h2>
+      <p class="section-subtitle" style="margin:0 auto 3rem;text-align:center">
+        Stay up to date with the latest Olympic coverage and world sports news.
+      </p>
+
+      <div class="media-grid">
+
+        <!-- Embedded media: Olympics YouTube highlight (Creative Commons) -->
+        <div class="media-card">
+          <iframe
+            src="https://www.youtube.com/embed/Zm6PxGpNv4Y"
+            title="Olympic Highlights – Paris 2024"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+            aria-label="Embedded YouTube video: Olympic Highlights"
+          ></iframe>
+          <div class="media-card-info">
+            <h3>Paris 2024 Olympics</h3>
+            <p>Watch the best moments from the Paris 2024 Olympic Games.</p>
+          </div>
+        </div>
+
+        <!-- Embedded: World Taekwondo highlight -->
+        <div class="media-card">
+          <iframe
+            src="https://www.youtube.com/embed/sFvnBBTNmrQ"
+            title="World Taekwondo Championship"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+            aria-label="Embedded YouTube video: World Taekwondo Championship"
+          ></iframe>
+          <div class="media-card-info">
+            <h3>Taekwondo World Championship</h3>
+            <p>Elite competition from the World Taekwondo Federation.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ⑥ NEWSLETTER / CTA SECTION -->
+    <section class="cta-section" id="subscribe" aria-labelledby="cta-heading">
+      <p class="section-label">Stay in the Game</p>
+      <h2 class="section-title" id="cta-heading">Join Our Community</h2>
+      <p class="section-subtitle">
+        Get the latest fixtures, news, and academy announcements delivered to your inbox.
+      </p>
+
+      <form
+        id="subscribe-form"
+        class="subscribe-form"
+        novalidate
+        aria-label="Newsletter subscription form"
+      >
+        <label for="subscribe-email" class="sr-only">Your email address</label>
+        <input
+          type="email"
+          id="subscribe-email"
+          name="email"
+          placeholder="your@email.com"
+          required
+          aria-required="true"
+          autocomplete="email"
+        />
+        <button type="submit" id="subscribe-btn" aria-label="Subscribe to newsletter">
+          Subscribe
+        </button>
+      </form>
+
+      <!-- CAPTCHA verification (simulated) -->
+      <div class="captcha-row" role="group" aria-labelledby="captcha-label">
+        <input
+          type="checkbox"
+          id="captcha-check"
+          aria-label="CAPTCHA: I am not a robot"
+        />
+        <label id="captcha-label" for="captcha-check">I am not a robot</label>
+        <i class="fa fa-shield-halved" aria-hidden="true" style="color:var(--gold)"></i>
+      </div>
+
+    </section>
+
+  </main><!-- /main -->
+
+  <!-- ─────────────────────────────────────────────────────────
+       FOOTER
+  ───────────────────────────────────────────────────────────── -->
+  <footer role="contentinfo">
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <span class="nav-logo">SRC <span>SPORTS</span></span>
+        <p>
+          The official sports academy of Pentecost University's Student Representative Council.
+          Empowering athletes, building champions, strengthening community.
+        </p>
+        <!-- Social Media Links -->
+        <div class="social-links" style="margin-top:1.2rem" aria-label="Social media links">
+          <a href="#" class="social-link" aria-label="Visit our Facebook page" rel="noopener noreferrer">
+            <i class="fab fa-facebook-f" aria-hidden="true"></i>
+          </a>
+          <a href="#" class="social-link" aria-label="Visit our Instagram page" rel="noopener noreferrer">
+            <i class="fab fa-instagram" aria-hidden="true"></i>
+          </a>
+          <a href="#" class="social-link" aria-label="Visit our X (Twitter) page" rel="noopener noreferrer">
+            <i class="fab fa-x-twitter" aria-hidden="true"></i>
+          </a>
+          <a href="#" class="social-link" aria-label="Visit our YouTube channel" rel="noopener noreferrer">
+            <i class="fab fa-youtube" aria-hidden="true"></i>
+          </a>
+          <a href="#" class="social-link" aria-label="Visit our WhatsApp community" rel="noopener noreferrer">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="new-activities.html">Sports</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Get Involved</h4>
+        <ul>
+          <li><a href="register.html">Register</a></li>
+          <li><a href="book.html">Book a Session</a></li>
+          <li><a href="new-activities.html">New Sports</a></li>
+          <li><a href="blog.html">Community Forum</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:src.sports@pentvars.edu.gh">src.sports@pentvars.edu.gh</a></li>
+          <li><a href="tel:+233000000000">+233 (0) 00 000 0000</a></li>
+          <li><a href="#">Pentecost University, Accra</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>
+        &copy; 2025 SRC Sports Academy, Pentecost University.
+        All rights reserved. &nbsp;|&nbsp;
+        Media sourced via
+        <a href="https://commons.wikimedia.org" target="_blank" rel="noopener noreferrer" style="color:var(--gold)">Wikimedia Commons</a>
+        &amp;
+        <a href="https://search.creativecommons.org" target="_blank" rel="noopener noreferrer" style="color:var(--gold)">Creative Commons</a>.
+      </p>
+    </div>
+  </footer>
+
+  <!-- main.js loaded last for performance -->
+  <script src="js/main.js"></script>
+
+  <!-- ② ACCESSIBILITY: screen-reader-only utility class -->
+  <style>
+    .sr-only {
+      position: absolute;
+      width: 1px; height: 1px;
+      padding: 0; margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+
+</body>
+</html>
