@@ -10,9 +10,9 @@
 <nav class="navbar" role="navigation" aria-label="Main navigation">
   <div class="container">
     <div class="nav-inner">
-      <a href="index.html" class="nav-logo" aria-label="SRC Sports Academy Home">SRC <span>SPORTS</span></a>
+      <a href="../index.html" class="nav-logo" aria-label="SRC Sports Academy Home">SRC <span>SPORTS</span></a>
       <div class="nav-links" role="list">
-        <a href="index.html" role="listitem">Home</a>
+        <a href="../index.html" role="listitem">Home</a>
         <a href="about.html" role="listitem">About</a>
         <a href="new-activities.html" role="listitem">New Sports</a>
         <a href="events.html" role="listitem">Events</a>
@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="mobile-nav" id="mobile-nav" role="list">
-      <a href="index.html" role="listitem">Home</a>
+      <a href="../index.html" role="listitem">Home</a>
       <a href="about.html" role="listitem">About</a>
       <a href="new-activities.html" role="listitem">New Sports</a>
       <a href="events.html" role="listitem">Events</a>
@@ -50,7 +50,7 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="index.html" class="nav-logo">SRC <span>SPORTS</span></a>
+        <a href="../index.html" class="nav-logo">SRC <span>SPORTS</span></a>
         <p>Empowering students and community through sport, discipline, and excellence. Pentecost University's premier sports institution.</p>
         <div class="social-links" aria-label="Social media links">
           <a href="#" aria-label="Facebook">📘</a>
@@ -62,7 +62,7 @@
       </div>
       <div class="footer-col">
         <h4>Quick Links</h4>
-        <a href="index.html">Home</a>
+        <a href="../index.html">Home</a>
         <a href="about.html">About Us</a>
         <a href="new-activities.html">New Sports</a>
         <a href="events.html">Events</a>
